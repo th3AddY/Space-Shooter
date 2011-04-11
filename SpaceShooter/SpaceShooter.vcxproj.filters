@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Nodes">
+      <UniqueIdentifier>{59018311-1020-4e5c-9ef4-4327523c8c62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="States">
+      <UniqueIdentifier>{d210a1d7-9fbd-440a-b8ef-0466073a1255}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{9e61c4eb-88ea-4dbd-9465-1233fccfd901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Core\UpdateCallbacks">
+      <UniqueIdentifier>{1997d84a-8bd7-4368-935a-8802cd3ed973}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{e031de37-763a-471b-b795-8358f246974b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Follower.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceConstruct.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceViewer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Universe.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="DummyState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadingUniverseState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceCraft.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="Matter.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceConstructCallback.cpp">
+      <Filter>Core\UpdateCallbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="MatterCallback.cpp">
+      <Filter>Core\UpdateCallbacks</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="BattleState.cpp">
+      <Filter>States</Filter>
+    </ClCompile>
+    <ClCompile Include="Human.cpp">
+      <Filter>Player</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SpaceViewer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceConstruct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Universe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Follower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DummyState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadingUniverseState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceCraft.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Matter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceConstructCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatterCallback.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BattleState.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Human.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Klassen.vsd">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>
