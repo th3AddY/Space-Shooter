@@ -19,11 +19,23 @@ namespace Shooter
 		void update();
 
 		void controlDirection(Vec3 direction);
+		void accelerate();
+		void retard();
 		
 		void setFollowerPosition(Follower* follower);
 
 	private:
+		// Speed control
+		bool m_accelerated;
+		float m_minSpeed;
+		float m_maxSpeed;
 
+		float m_defaultSpeed;
+		float m_speed;
+
+		void goToDefaultSpeed();
+
+		// Attitude Control
 		Vec3 m_attitudeAcceleration;
 	};
 }

@@ -24,6 +24,7 @@ namespace Shooter
 		int mouseYspeed;
 	} InputStateStamp;
 
+	void checkKeys(bool* keys);
 
 	Geode* createSkyboxGeode(char* dir);
 

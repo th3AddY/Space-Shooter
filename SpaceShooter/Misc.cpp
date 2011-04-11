@@ -2,6 +2,13 @@
 
 using namespace Shooter;
 
+void Shooter::checkKeys(bool* keys)
+{
+	for (int i=0; i<256; i++)
+		if (keys[i])
+			break;
+}
+
 Geode* Shooter::createSkyboxGeode(char* dir)
 {
 	char texture_string[128];
