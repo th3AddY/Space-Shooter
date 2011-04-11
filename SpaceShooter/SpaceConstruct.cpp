@@ -4,7 +4,8 @@ using namespace Shooter;
 
 SpaceConstruct::SpaceConstruct()
 	: m_prevSimTime(0),
-	  m_currentState(0)
+	  m_currentState(0),
+	  m_cursorTime(0)
 {
 	initializeGraphicsMode();
 
@@ -58,6 +59,8 @@ int SpaceConstruct::run()
 
 	m_viewer.realize();
 
+	setUpCursor();
+
 	m_prevSimTime = m_viewer.getFrameStamp()->getSimulationTime();
 	while(m_universe->isRunning() && !m_viewer.done())
 		m_viewer.frame();
@@ -88,4 +91,22 @@ void SpaceConstruct::initializeGraphicsMode()
 void SpaceConstruct::updateCursor()
 {
 	m_currentState->updateMouseMotion();
+
+	if (m_currSimTime - m_cursorTime >= 0.02)
+	{
+		osgViewer::Viewer::Windows windows;
+		m_viewer.getWindows(windows);
+
+		(*windows.begin())->requestWarpPointer(m_gameResolution[0]/2, m_gameResolution[1]/2);
+		m_currentState->updateMousePosition(m_gameResolution[0]/2, m_gameResolution[1]/2);
+		m_cursorTime = m_currSimTime;
+	}
+}
+
+void SpaceConstruct::setUpCursor()
+{
+	osgViewer::Viewer::Windows windows;
+	m_viewer.getWindows(windows);
+
+	(*windows.begin())->setCursor(osgViewer::GraphicsWindow::NoCursor);
 }

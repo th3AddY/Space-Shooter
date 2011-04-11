@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\SDKs\boost_1_46_1;E:\SDKs\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\SDKs\OpenSceneGraph-2.9.11\lib;E:\SDKs\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\SDK\boost_1_46_1;C:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDK\OpenSceneGraph-2.9.11\lib;C:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

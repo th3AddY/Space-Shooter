@@ -24,6 +24,7 @@ namespace Shooter
 		void updateCursor();
 	private:
 		void initializeGraphicsMode();
+		void setUpCursor();
 
 		SpaceState* m_currentState;
 
@@ -34,6 +35,8 @@ namespace Shooter
 		double m_currSimTime;
 		double m_prevSimTime;
 		double m_simTimeDiff;
+
+		double m_cursorTime;
 
 		unsigned int m_nativeResolution[2];
 		unsigned int m_gameResolution[2];
