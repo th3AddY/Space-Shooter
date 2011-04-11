@@ -1,4 +1,5 @@
-.sdf
+*.sdf
+*.vcxproj.user
+*.suo
 Debug/
-.vcxproj.user
 SpaceShooter/Debug/
