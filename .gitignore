@@ -1,6 +1,7 @@
 *.sdf
 *.vcxproj.user
 *.suo
+*.opensdf
 Debug/
 SpaceShooter/Debug/
 ipch/

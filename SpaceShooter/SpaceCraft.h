@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 #include <osg/Geode>
 #include <osg/ShapeDrawable>
 
@@ -11,6 +13,21 @@ using namespace osg;
 
 namespace Shooter
 {
+	typedef struct _spaceCraftParams
+	{
+		float defaultSpeed;
+		float maxSpeed;
+		float minSpeed;
+
+		float forwardAcceleration;
+		float backwardAcceleration;
+		float defaultSpeedAcceleration;
+
+		float maxLateralDeflection;
+		float maxAttitudeDeflection;
+		float attitudeReduction;
+	} SpaceCraftParams;
+
 	class SpaceCraft : public Matter
 	{
 	public:
@@ -18,7 +35,9 @@ namespace Shooter
 
 		void update();
 
-		void controlDirection(Vec3 direction);
+		void controlDirection(Vec2 direction);
+		void controlLateral(float direction);
+
 		void accelerate();
 		void retard();
 		
@@ -26,16 +45,15 @@ namespace Shooter
 
 	private:
 		// Speed control
-		bool m_accelerated;
-		float m_minSpeed;
-		float m_maxSpeed;
+		SpaceCraftParams m_params;
 
-		float m_defaultSpeed;
+		bool m_accelerated;
 		float m_speed;
 
 		void goToDefaultSpeed();
 
 		// Attitude Control
-		Vec3 m_attitudeAcceleration;
+		Vec2 m_attitudeAcceleration;
+		float m_lateralAcceleration;
 	};
 }
