@@ -78,7 +78,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BattleState.cpp" />
-    <ClCompile Include="DummyState.cpp" />
     <ClCompile Include="Follower.cpp" />
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="LoadingState.cpp" />

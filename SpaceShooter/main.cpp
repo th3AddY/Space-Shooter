@@ -6,7 +6,6 @@
 #include "SpaceConstruct.h"
 #include "SpaceConstructCallback.h"
 #include "LoadingUniverseState.h"
-#include "DummyState.h"
 #include "BattleState.h"
 
 using namespace Shooter;

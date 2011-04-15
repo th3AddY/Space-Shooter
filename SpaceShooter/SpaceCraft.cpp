@@ -15,11 +15,17 @@ SpaceCraft::SpaceCraft(double* simTimeDiff)
 	m_params.backwardAcceleration = 25;
 	m_params.defaultSpeedAcceleration = 20;
 
-	m_params.maxLateralDeflection = 2;
-	m_params.maxAttitudeDeflection = 3;
+	m_params.maxLateralDeflection = 3;
+	m_params.maxAttitudeDeflection = 4;
 	m_params.attitudeReduction = 50;
 
+	m_params.followerAttitude = getQuatFromEuler(0, 0, -0.2);
+	m_params.followerPosition = Vec3(0, -10, 3);
+	m_params.followerConvergence = 100;
+
 	m_speed = m_params.defaultSpeed;
+
+	getFollowerPosition(&m_followerPosition, &m_followerAttitude);
 
 	Geode* geode = new Geode();
 	geode->addDrawable(new ShapeDrawable(new Box()));
@@ -90,13 +96,18 @@ void SpaceCraft::controlLateral(float direction)
 
 void SpaceCraft::setFollowerPosition(Follower* follower)
 {
-	Matrix mat = Matrix::rotate(getAttitude());
-	Vec3 position = Vec3(0, -10, 3);
+	Vec3 position;
+	Quat attitude;
 
-	transformVector(&position, &mat);
+	getFollowerPosition(&position, &attitude);
 
-	follower->setPosition(getPosition() + position);
-	follower->setAttitude(getAttitude());
+	float convergence = 1.0f - pow(m_params.followerConvergence, -float(*m_simTimeDiff));
+
+	m_followerPosition = m_followerPosition + (position - m_followerPosition) * convergence;
+	m_followerAttitude.slerp(convergence, m_followerAttitude, attitude);
+
+	follower->setPosition(m_followerPosition);
+	follower->setAttitude(m_followerAttitude);
 }
 
 void SpaceCraft::goToDefaultSpeed()
@@ -114,4 +125,18 @@ void SpaceCraft::goToDefaultSpeed()
 		if (m_speed > m_params.defaultSpeed)
 			m_speed = m_params.defaultSpeed;
 	}
+}
+
+void SpaceCraft::getFollowerPosition(Vec3* position, Quat* attitude)
+{
+	Matrix matAttitude = Matrix::rotate(getAttitude());
+
+	Vec3 pos = m_params.followerPosition;
+	transformVector(&pos, &matAttitude);
+
+	Matrix att;
+	att.mult(Matrix::rotate(m_params.followerAttitude), matAttitude);
+
+	*position = pos + getPosition();
+	*attitude = att.getRotate();
 }

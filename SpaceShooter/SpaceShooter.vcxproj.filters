@@ -47,9 +47,6 @@
     <ClCompile Include="Universe.cpp">
       <Filter>Nodes</Filter>
     </ClCompile>
-    <ClCompile Include="DummyState.cpp">
-      <Filter>States</Filter>
-    </ClCompile>
     <ClCompile Include="LoadingState.cpp">
       <Filter>States</Filter>
     </ClCompile>

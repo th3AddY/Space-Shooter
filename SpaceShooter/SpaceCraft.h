@@ -26,6 +26,10 @@ namespace Shooter
 		float maxLateralDeflection;
 		float maxAttitudeDeflection;
 		float attitudeReduction;
+
+		Vec3 followerPosition;
+		Quat followerAttitude;
+		float followerConvergence;
 	} SpaceCraftParams;
 
 	class SpaceCraft : public Matter
@@ -50,10 +54,15 @@ namespace Shooter
 		bool m_accelerated;
 		float m_speed;
 
-		void goToDefaultSpeed();
-
 		// Attitude Control
 		Vec2 m_attitudeAcceleration;
 		float m_lateralAcceleration;
+
+		// Follower data
+		Vec3 m_followerPosition;
+		Quat m_followerAttitude;
+
+		void goToDefaultSpeed();
+		void getFollowerPosition(Vec3* position, Quat* attitude);
 	};
 }

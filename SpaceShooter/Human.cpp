@@ -5,7 +5,7 @@ using namespace Shooter;
 void Human::control()
 {
 	m_spaceCraft->controlDirection(Vec2(double(-m_inputState.mouseXspeed) * 0.0005, double(m_inputState.mouseYspeed) * 0.0015));
-
+	m_spaceCraft->controlLateral(float(m_inputState.mouseXspeed) * 0.0005);
 
 	if (m_inputState.keydown[97])
 		m_spaceCraft->controlLateral(-0.1f);
