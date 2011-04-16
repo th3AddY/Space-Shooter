@@ -4,12 +4,14 @@
 
 #include <osg/Geode>
 #include <osg/ShapeDrawable>
+#include <osgDB/ReadFile>
 
 #include "Matter.h"
 #include "Follower.h"
 #include "MatterCallback.h"
 
 using namespace osg;
+using namespace osgDB;
 
 namespace Shooter
 {

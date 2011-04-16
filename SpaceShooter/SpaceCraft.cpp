@@ -19,17 +19,21 @@ SpaceCraft::SpaceCraft(double* simTimeDiff)
 	m_params.maxAttitudeDeflection = 4;
 	m_params.attitudeReduction = 50;
 
-	m_params.followerAttitude = getQuatFromEuler(0, 0, -0.2);
-	m_params.followerPosition = Vec3(0, -10, 3);
+	m_params.followerAttitude = getQuatFromEuler(0, 0, -0.4);
+	m_params.followerPosition = Vec3(0, -10, 6);
 	m_params.followerConvergence = 100;
 
 	m_speed = m_params.defaultSpeed;
 
 	getFollowerPosition(&m_followerPosition, &m_followerAttitude);
 
-	Geode* geode = new Geode();
-	geode->addDrawable(new ShapeDrawable(new Box()));
-	addChild(geode);
+
+	PositionAttitudeTransform* transform = new PositionAttitudeTransform();
+	transform->setScale(Vec3(0.13, 0.13, 0.13));
+	transform->setAttitude(getQuatFromEuler(0, -3.141/2, 0));
+
+	transform->addChild(readNodeFile("GameData/models/Frigate/model.3ds"));
+	addChild(transform);
 
 	setUpdateCallback(new MatterCallback());
 }
