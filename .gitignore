@@ -1,3 +1,5 @@
+# Visual Studio
+
 *.sdf
 *.vcxproj.user
 *.suo
@@ -5,3 +7,7 @@
 Debug/
 SpaceShooter/Debug/
 ipch/
+
+# misc
+
+*.ms3d
