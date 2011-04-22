@@ -117,10 +117,12 @@
     <ClInclude Include="Universe.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GameData\SpaceCrafts\Corsair.xml" />
     <None Include="GameData\SpaceCrafts\Cruiser.xml" />
     <None Include="GameData\SpaceCrafts\Fighter.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="GameData\SpaceCrafts\Frigate.xml" />
     <None Include="Klassen.vsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

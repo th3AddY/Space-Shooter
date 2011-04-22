@@ -1,0 +1,26 @@
+<spacecraft>
+
+  <model file="GameData/models/Frigate/model.3ds">
+    <position x="0" y="0" z="0"/>
+    <attitude x="0" y="-1.5705" z="0" />
+    <scale x="0.13" y="0.13" z="0.13" />
+  </model>
+
+  <parameters>
+    <defaultSpeed value="20" />
+    <minSpeed value="10" />
+    <maxSpeed value="64" />
+    <forwardAcceleration value="25" />
+    <backwardAcceleration value="25" />
+    <defaultSpeedAcceleration value="20" />
+
+    <maxLateralDeflection value="3" />
+    <maxAttitudeDeflection value="4" />
+    <attitudeReduction value="50" />
+
+    <followerAttitude x="0" y="0" z="-0.4" />
+    <followerPosition x="0" y="-10" z="6" />
+    <followerConvergence value="100" />
+  </parameters>
+
+</spacecraft>

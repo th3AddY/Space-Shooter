@@ -77,7 +77,7 @@ int Universe::build()
 		getStateSet()->setMode(GL_LIGHT0, StateAttribute::ON);
 
 		LightModel* lm = new LightModel();
-		lm->setAmbientIntensity(Vec4(0.1f, 0.1f, 0.1f, 1.0f));
+		lm->setAmbientIntensity(Vec4(0.5f, 0.5f, 0.5f, 1.0f));
 		getStateSet()->setAttribute(lm, StateAttribute::ON);
 		//////////////
 

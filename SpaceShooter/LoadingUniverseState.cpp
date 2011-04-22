@@ -11,7 +11,7 @@ void LoadingUniverseState::loadingProcess()
 {
 	m_universe->destruct();
 
-	m_universe->addSkybox("skybox/cosmo02");
+	m_universe->addSkybox("skybox/Skycube02");
 
 
 
@@ -31,15 +31,31 @@ void LoadingUniverseState::loadingProcess()
 
 
 
-	SpaceCraft* spaceCraft = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Fighter.xml", m_simTimeDiff);
-	SpaceCraft* spaceCraft2 = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Cruiser.xml", m_simTimeDiff);
+	SpaceCraft* fighter = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Fighter.xml", m_simTimeDiff);
+	SpaceCraft* cruiser = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Cruiser.xml", m_simTimeDiff);
+	SpaceCraft* corsair = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Corsair.xml", m_simTimeDiff);
+	SpaceCraft* frigate = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Frigate.xml", m_simTimeDiff);
+
+	fighter->setPosition(Vec3(0, -200, 0));
+
+	corsair->setPosition(Vec3(0, 200, 0));
+	corsair->setAttitude(getQuatFromEuler(0, 0, 3.141));
+
+	frigate->setPosition(Vec3(-200, 0, 0));
+	frigate->setAttitude(getQuatFromEuler(0, -3.141/2, 0));
+
+	cruiser->setPosition(Vec3(200, 0, 0));
+	cruiser->setAttitude(getQuatFromEuler(0, 3.141/2, 0));
 
 
-	m_universe->addChild(spaceCraft);
-	m_universe->addChild(spaceCraft2);
+
+	m_universe->addChild(fighter);
+	m_universe->addChild(cruiser);
+	m_universe->addChild(corsair);
+	m_universe->addChild(frigate);
 
 	Human* human = new Human();
-	human->assignSpaceCraft(spaceCraft);
+	human->assignSpaceCraft(fighter);
 
 	m_universe->addPlayer(human);
 

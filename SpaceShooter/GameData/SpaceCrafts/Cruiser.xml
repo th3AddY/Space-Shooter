@@ -3,23 +3,23 @@
   <model file="GameData/models/Cruiser/model.3ds">
     <position x="0" y="0" z="0"/>
     <attitude x="0" y="-1.5705" z="0" />
-    <scale x="0.13" y="0.13" z="0.13" />
+    <scale x="0.1" y="0.1" z="0.1" />
   </model>
 
   <parameters>
     <defaultSpeed value="12" />
     <minSpeed value="5" />
     <maxSpeed value="48" />
-    <forwardAcceleration value="25" />
-    <backwardAcceleration value="25" />
+    <forwardAcceleration value="15" />
+    <backwardAcceleration value="15" />
     <defaultSpeedAcceleration value="20" />
 
-    <maxLateralDeflection value="3" />
-    <maxAttitudeDeflection value="4" />
-    <attitudeReduction value="50" />
+    <maxLateralDeflection value="1.3" />
+    <maxAttitudeDeflection value="2.5" />
+    <attitudeReduction value="10" />
 
     <followerAttitude x="0" y="0" z="-0.4" />
-    <followerPosition x="0" y="-10" z="6" />
+    <followerPosition x="0" y="-20" z="10" />
     <followerConvergence value="100" />
   </parameters>
 

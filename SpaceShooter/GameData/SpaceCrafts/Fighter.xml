@@ -7,9 +7,9 @@
   </model>
 
   <parameters>
-    <defaultSpeed value="12" />
-	  <minSpeed value="5" />
-	  <maxSpeed value="48" />
+    <defaultSpeed value="20" />
+	  <minSpeed value="10" />
+	  <maxSpeed value="64" />
 	  <forwardAcceleration value="25" />
 	  <backwardAcceleration value="25" />
 	  <defaultSpeedAcceleration value="20" />

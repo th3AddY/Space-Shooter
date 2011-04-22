@@ -150,5 +150,11 @@
     <None Include="GameData\SpaceCrafts\Cruiser.xml">
       <Filter>Resource Files\SpaceCrafts</Filter>
     </None>
+    <None Include="GameData\SpaceCrafts\Corsair.xml">
+      <Filter>Resource Files\SpaceCrafts</Filter>
+    </None>
+    <None Include="GameData\SpaceCrafts\Frigate.xml">
+      <Filter>Resource Files\SpaceCrafts</Filter>
+    </None>
   </ItemGroup>
 </Project>

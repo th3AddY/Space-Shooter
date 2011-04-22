@@ -191,12 +191,4 @@ void SpaceCraftBuilder::buildSpaceCraftNode(SpaceCraftData* data)
 	transform->addChild(ModelCache::get()->fromFile(data->modelFilename));
 
 	data->node = transform;
-
-	/* PositionAttitudeTransform* transform = new PositionAttitudeTransform();
-	transform->setScale(Vec3(0.23, 0.3, 0.3));
-	transform->setAttitude(getQuatFromEuler(0, 0,3.141/2));
-
-	transform->addChild(readNodeFile("GameData/models/Corsair/model.3ds"));
-
-	addChild(transform); */
 }
