@@ -1,9 +1,15 @@
 #pragma once
 
+#include <xercesc\util\PlatformUtils.hpp>
+
 #include "SpaceState.h"
 #include "SpaceViewer.h"
 #include "Universe.h"
 #include "Follower.h"
+#include "SpaceCraftBuilder.h"
+#include "ModelCache.h"
+
+using namespace xercesc;
 
 namespace Shooter
 {
@@ -23,6 +29,7 @@ namespace Shooter
 		void recalcSimTime();
 		void updateCursor();
 	private:
+		bool initializeXerces();
 		void initializeGraphicsMode();
 		void setUpCursor();
 

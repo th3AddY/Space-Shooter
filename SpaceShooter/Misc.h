@@ -1,5 +1,11 @@
 #pragma once
 
+#include <string>
+#include <algorithm>
+#include <cctype>
+
+#include <xercesc/dom/DOM.hpp>
+
 #include <osg/Vec3>
 #include <osg/Matrix>
 #include <osg/Geode>
@@ -7,8 +13,10 @@
 #include <osg/Depth>
 #include <osgDB/ReadFile>
 
+using namespace std;
 using namespace osg;
 using namespace osgDB;
+using namespace xercesc;
 
 namespace Shooter
 {
@@ -30,4 +38,12 @@ namespace Shooter
 
 	void transformVector(Vec3* vec, Matrixd* mat);
 	Quat getQuatFromEuler(double heading, double attitude, double bank);
+
+	string getLower(char* text);
+	
+	// XML Helper
+	float XMLGetScalar(DOMNode* node);
+	Vec3 XMLGetVec3(DOMNode* node);
+	Quat XMLGetQuat(DOMNode* node);
+
 }

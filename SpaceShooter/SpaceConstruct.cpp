@@ -7,6 +7,7 @@ SpaceConstruct::SpaceConstruct()
 	  m_currentState(0),
 	  m_cursorTime(0)
 {
+	initializeXerces();
 	initializeGraphicsMode();
 
 	m_universe = new Universe();
@@ -15,8 +16,30 @@ SpaceConstruct::SpaceConstruct()
 
 SpaceConstruct::~SpaceConstruct()
 {
+	SpaceCraftBuilder::get()->clear();
+	ModelCache::get()->clear();
+
+	XMLPlatformUtils::Terminate();
+
 	GraphicsContext::getWindowingSystemInterface()->
 		setScreenResolution(0, m_nativeResolution[0], m_nativeResolution[1]);
+}
+
+bool SpaceConstruct::initializeXerces()
+{
+	try 
+	{
+		XMLPlatformUtils::Initialize();
+	}
+	catch (const XMLException& e)
+	{
+		std::cout << "Xerces failed to load." << std::endl;
+		std::cout << e.getMessage() << std::endl;
+
+		return false;
+	}
+
+	return true;
 }
 
 void SpaceConstruct::setState(SpaceState* state)

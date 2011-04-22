@@ -253,3 +253,65 @@ Quat Shooter::getQuatFromEuler(double heading, double attitude, double bank)
 
 	return q;
 }
+
+string Shooter::getLower(char* text)
+{
+	string result(text);
+	transform(result.begin(), result.end(), result.begin(), tolower);
+
+	return result;
+}
+
+float Shooter::XMLGetScalar(DOMNode* node)
+{
+	float value = 0;
+
+	DOMNamedNodeMap* attributes = node->getAttributes();
+
+	for (unsigned int i=0; i<attributes->getLength(); i++)
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "value")
+		{
+			value = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+			break;
+		}
+
+	return value;
+}
+
+Vec3 Shooter::XMLGetVec3(DOMNode* node)
+{
+	float x=0,y=0,z=0;
+
+	DOMNamedNodeMap* attributes = node->getAttributes();
+
+	for (unsigned int i=0; i<attributes->getLength(); i++)
+	{
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "x")
+			x = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "y")
+			y = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "z")
+			z = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+	}
+
+	return Vec3(x, y, z);
+}
+
+Quat Shooter::XMLGetQuat(DOMNode* node)
+{
+	double x=0,y=0,z=0;
+
+	DOMNamedNodeMap* attributes = node->getAttributes();
+
+	for (unsigned int i=0; i<attributes->getLength(); i++)
+	{
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "x")
+			x = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "y")
+			y = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "z")
+			z = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+	}
+
+	return getQuatFromEuler(x, y, z);
+}

@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\SDK\boost_1_46_1;E:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\SDK\OpenSceneGraph-2.9.11\lib;E:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\SDK\xerces-c-3.1.1\src;C:\SDK\boost_1_46_1;C:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDK\xerces-c-3.1.1\Build\Win32\VC10\Debug;C:\SDK\OpenSceneGraph-2.9.11\lib;C:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -56,7 +56,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>libboost_thread-vc100-mt-gd-1_46_1.lib;OpenThreadsd.lib;osgAnimationd.lib;osgd.lib;osgDBd.lib;osgFXd.lib;osgGAd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgQtd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgViewerd.lib;osgVolumed.lib;osgWidgetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xerces-c_3D.lib;libboost_thread-vc100-mt-gd-1_46_1.lib;OpenThreadsd.lib;osgAnimationd.lib;osgd.lib;osgDBd.lib;osgFXd.lib;osgGAd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgQtd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgViewerd.lib;osgVolumed.lib;osgWidgetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -86,10 +86,12 @@
     <ClCompile Include="Matter.cpp" />
     <ClCompile Include="MatterCallback.cpp" />
     <ClCompile Include="Misc.cpp" />
+    <ClCompile Include="ModelCache.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpaceConstruct.cpp" />
     <ClCompile Include="SpaceConstructCallback.cpp" />
     <ClCompile Include="SpaceCraft.cpp" />
+    <ClCompile Include="SpaceCraftBuilder.cpp" />
     <ClCompile Include="SpaceState.cpp" />
     <ClCompile Include="SpaceViewer.cpp" />
     <ClCompile Include="Universe.cpp" />
@@ -104,15 +106,21 @@
     <ClInclude Include="Matter.h" />
     <ClInclude Include="MatterCallback.h" />
     <ClInclude Include="Misc.h" />
+    <ClInclude Include="ModelCache.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SpaceConstruct.h" />
     <ClInclude Include="SpaceConstructCallback.h" />
     <ClInclude Include="SpaceCraft.h" />
+    <ClInclude Include="SpaceCraftBuilder.h" />
     <ClInclude Include="SpaceState.h" />
     <ClInclude Include="SpaceViewer.h" />
     <ClInclude Include="Universe.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GameData\SpaceCrafts\Cruiser.xml" />
+    <None Include="GameData\SpaceCrafts\Fighter.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Klassen.vsd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

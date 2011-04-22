@@ -24,6 +24,9 @@
     <Filter Include="Player">
       <UniqueIdentifier>{e031de37-763a-471b-b795-8358f246974b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\SpaceCrafts">
+      <UniqueIdentifier>{3933b153-d809-47b4-97c1-d35fdcf6813e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Follower.cpp">
@@ -73,6 +76,12 @@
     </ClCompile>
     <ClCompile Include="Human.cpp">
       <Filter>Player</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceCraftBuilder.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelCache.cpp">
+      <Filter>Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -124,10 +133,22 @@
     <ClInclude Include="Human.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SpaceCraftBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Klassen.vsd">
       <Filter>Resource Files</Filter>
+    </None>
+    <None Include="GameData\SpaceCrafts\Fighter.xml">
+      <Filter>Resource Files\SpaceCrafts</Filter>
+    </None>
+    <None Include="GameData\SpaceCrafts\Cruiser.xml">
+      <Filter>Resource Files\SpaceCrafts</Filter>
     </None>
   </ItemGroup>
 </Project>

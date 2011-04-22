@@ -4,7 +4,6 @@
 
 #include <osg/Geode>
 #include <osg/ShapeDrawable>
-#include <osgDB/ReadFile>
 
 #include "Matter.h"
 #include "Follower.h"
@@ -37,7 +36,7 @@ namespace Shooter
 	class SpaceCraft : public Matter
 	{
 	public:
-		SpaceCraft(double* simTimeDiff);
+		SpaceCraft(double* simTimeDiff, SpaceCraftParams params);
 
 		void update();
 

@@ -3,6 +3,7 @@
 #include "LoadingState.h"
 #include "SpaceCraft.h"
 #include "Human.h"
+#include "SpaceCraftBuilder.h"
 
 #include <osg/ShapeDrawable>
 

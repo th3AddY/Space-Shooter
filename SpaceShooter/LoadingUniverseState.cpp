@@ -31,15 +31,12 @@ void LoadingUniverseState::loadingProcess()
 
 
 
-	SpaceCraft* spaceCraft = new SpaceCraft(m_simTimeDiff);
-	SpaceCraft* spaceCraft2 = new SpaceCraft(m_simTimeDiff);
+	SpaceCraft* spaceCraft = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Fighter.xml", m_simTimeDiff);
+	SpaceCraft* spaceCraft2 = SpaceCraftBuilder::get()->fromFile("GameData/SpaceCrafts/Cruiser.xml", m_simTimeDiff);
+
 
 	m_universe->addChild(spaceCraft);
 	m_universe->addChild(spaceCraft2);
-
-	spaceCraft2->setPosition(Vec3(-20,50, 0));
-	spaceCraft2->setAttitude(getQuatFromEuler(0, - 3.1415962 / 2, 0));
-
 
 	Human* human = new Human();
 	human->assignSpaceCraft(spaceCraft);

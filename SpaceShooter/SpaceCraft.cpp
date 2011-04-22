@@ -2,38 +2,16 @@
 
 using namespace Shooter;
 
-SpaceCraft::SpaceCraft(double* simTimeDiff)
+SpaceCraft::SpaceCraft(double* simTimeDiff, SpaceCraftParams params)
 	: Matter(simTimeDiff),
 	  m_attitudeAcceleration(0, 0),
 	  m_lateralAcceleration(0),
-	  m_accelerated(false)
+	  m_accelerated(false),
+	  m_params(params)
 {
-	m_params.defaultSpeed = 12;
-	m_params.minSpeed = 5;
-	m_params.maxSpeed = 48;
-	m_params.forwardAcceleration = 25;
-	m_params.backwardAcceleration = 25;
-	m_params.defaultSpeedAcceleration = 20;
-
-	m_params.maxLateralDeflection = 3;
-	m_params.maxAttitudeDeflection = 4;
-	m_params.attitudeReduction = 50;
-
-	m_params.followerAttitude = getQuatFromEuler(0, 0, -0.4);
-	m_params.followerPosition = Vec3(0, -10, 6);
-	m_params.followerConvergence = 100;
-
 	m_speed = m_params.defaultSpeed;
 
 	getFollowerPosition(&m_followerPosition, &m_followerAttitude);
-
-
-	PositionAttitudeTransform* transform = new PositionAttitudeTransform();
-	transform->setScale(Vec3(0.13, 0.13, 0.13));
-	transform->setAttitude(getQuatFromEuler(0, -3.141/2, 0));
-
-	transform->addChild(readNodeFile("GameData/models/Frigate/model.3ds"));
-	addChild(transform);
 
 	setUpdateCallback(new MatterCallback());
 }
