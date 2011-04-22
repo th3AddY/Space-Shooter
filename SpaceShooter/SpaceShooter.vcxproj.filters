@@ -141,9 +141,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Klassen.vsd">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="GameData\SpaceCrafts\Fighter.xml">
       <Filter>Resource Files\SpaceCrafts</Filter>
     </None>

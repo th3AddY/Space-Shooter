@@ -55,7 +55,7 @@ void LoadingUniverseState::loadingProcess()
 	m_universe->addChild(frigate);
 
 	Human* human = new Human();
-	human->assignSpaceCraft(fighter);
+	human->assignSpaceCraft(cruiser);
 
 	m_universe->addPlayer(human);
 
