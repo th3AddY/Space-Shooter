@@ -7,7 +7,6 @@
 #include "Universe.h"
 #include "Follower.h"
 #include "SpaceCraftBuilder.h"
-#include "ModelCache.h"
 
 using namespace xercesc;
 
@@ -47,6 +46,8 @@ namespace Shooter
 
 		unsigned int m_nativeResolution[2];
 		unsigned int m_gameResolution[2];
+
+		bool ignoreSimTime;
 	};
 
 }

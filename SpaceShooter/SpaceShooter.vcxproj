@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\SDK\xerces-c-3.1.1\src;C:\SDK\boost_1_46_1;C:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDK\xerces-c-3.1.1\Build\Win32\VC10\Debug;C:\SDK\OpenSceneGraph-2.9.11\lib;C:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\SDK\xerces-c-3.1.1\src;E:\SDK\boost_1_46_1;E:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\SDK\xerces-c-3.1.1\Build\Win32\VC10\Debug;E:\SDK\OpenSceneGraph-2.9.11\lib;E:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -78,6 +78,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BattleState.cpp" />
+    <ClCompile Include="Cache.cpp" />
+    <ClCompile Include="CacheContainer.cpp" />
     <ClCompile Include="Follower.cpp" />
     <ClCompile Include="Human.cpp" />
     <ClCompile Include="LoadingState.cpp" />
@@ -85,19 +87,22 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Matter.cpp" />
     <ClCompile Include="MatterCallback.cpp" />
+    <ClCompile Include="MeshCache.cpp" />
     <ClCompile Include="Misc.cpp" />
-    <ClCompile Include="ModelCache.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpaceConstruct.cpp" />
     <ClCompile Include="SpaceConstructCallback.cpp" />
     <ClCompile Include="SpaceCraft.cpp" />
     <ClCompile Include="SpaceCraftBuilder.cpp" />
+    <ClCompile Include="SpaceCraftContainer.cpp" />
     <ClCompile Include="SpaceState.cpp" />
     <ClCompile Include="SpaceViewer.cpp" />
     <ClCompile Include="Universe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleState.h" />
+    <ClInclude Include="Cache.h" />
+    <ClInclude Include="CacheContainer.h" />
     <ClInclude Include="DummyState.h" />
     <ClInclude Include="Follower.h" />
     <ClInclude Include="Human.h" />
@@ -105,13 +110,14 @@
     <ClInclude Include="LoadingUniverseState.h" />
     <ClInclude Include="Matter.h" />
     <ClInclude Include="MatterCallback.h" />
+    <ClInclude Include="MeshCache.h" />
     <ClInclude Include="Misc.h" />
-    <ClInclude Include="ModelCache.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SpaceConstruct.h" />
     <ClInclude Include="SpaceConstructCallback.h" />
     <ClInclude Include="SpaceCraft.h" />
     <ClInclude Include="SpaceCraftBuilder.h" />
+    <ClInclude Include="SpaceCraftContainer.h" />
     <ClInclude Include="SpaceState.h" />
     <ClInclude Include="SpaceViewer.h" />
     <ClInclude Include="Universe.h" />

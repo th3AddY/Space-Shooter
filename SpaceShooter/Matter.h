@@ -11,7 +11,9 @@ namespace Shooter
 	class Matter : public PositionAttitudeTransform
 	{
 	public:
-		Matter(double* simTimeDiff);
+		Matter();
+
+		void setSimTimePointer(double* simTimeDiff);
 
 		virtual void update() {}
 

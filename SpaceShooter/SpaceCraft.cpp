@@ -2,9 +2,8 @@
 
 using namespace Shooter;
 
-SpaceCraft::SpaceCraft(double* simTimeDiff, SpaceCraftParams params)
-	: Matter(simTimeDiff),
-	  m_attitudeAcceleration(0, 0),
+SpaceCraft::SpaceCraft(SpaceCraftParams params)
+	: m_attitudeAcceleration(0, 0),
 	  m_lateralAcceleration(0),
 	  m_accelerated(false),
 	  m_params(params)

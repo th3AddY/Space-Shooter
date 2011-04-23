@@ -9,8 +9,9 @@
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/sax/HandlerBase.hpp>
 
-#include "SpaceCraft.h"
-#include "ModelCache.h"
+#include "Cache.h"
+#include "MeshCache.h"
+#include "SpaceCraftContainer.h"
 #include "Misc.h"
 
 using namespace osg;
@@ -19,34 +20,18 @@ using namespace xercesc;
 
 namespace Shooter
 {
-	typedef struct _spaceCraftData
-	{
-		char* filename;
-		char* modelFilename;
-
-		Vec3 position;
-		Vec3 scale;
-		Quat attitude;
-
-		ref_ptr<Node> node;
-		SpaceCraftParams params;
-	} SpaceCraftData;
-
-	class SpaceCraftBuilder
+	class SpaceCraftBuilder : public Cache<SpaceCraftBuilder>
 	{
 	public:
-		static SpaceCraftBuilder* get();
-		void clear();
+		SpaceCraft* build(char* filename, double* simTimeDiff);
 
-		SpaceCraft* fromFile(char* filename, double* simTimeDiff);
+	protected:
+		CacheContainer* load(char* filename);
+		Node* getNode(CacheContainer* container);
 
 	private:
-		SpaceCraftData* findCache(char* filename);
-		SpaceCraftData* parseXML(DOMDocument* doc);
-		void buildSpaceCraftNode(SpaceCraftData* data);
-
-		static SpaceCraftBuilder* m_instance;
-
-		vector<SpaceCraftData*> m_spaceCraftCache;
+		SpaceCraftContainer* parseXML(DOMDocument* doc);
+		
+		void buildSpaceCraftNode(SpaceCraftContainer* container);
 	};
 }

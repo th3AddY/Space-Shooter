@@ -27,6 +27,9 @@
     <Filter Include="Resource Files\SpaceCrafts">
       <UniqueIdentifier>{3933b153-d809-47b4-97c1-d35fdcf6813e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Cache">
+      <UniqueIdentifier>{146d2540-0500-4740-bb4b-69c7c91bf4a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Follower.cpp">
@@ -77,11 +80,20 @@
     <ClCompile Include="Human.cpp">
       <Filter>Player</Filter>
     </ClCompile>
-    <ClCompile Include="SpaceCraftBuilder.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="Cache.cpp">
+      <Filter>Cache</Filter>
     </ClCompile>
-    <ClCompile Include="ModelCache.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="MeshCache.cpp">
+      <Filter>Cache</Filter>
+    </ClCompile>
+    <ClCompile Include="CacheContainer.cpp">
+      <Filter>Cache</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceCraftBuilder.cpp">
+      <Filter>Cache</Filter>
+    </ClCompile>
+    <ClCompile Include="SpaceCraftContainer.cpp">
+      <Filter>Cache</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -136,7 +148,16 @@
     <ClInclude Include="SpaceCraftBuilder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ModelCache.h">
+    <ClInclude Include="Cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MeshCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CacheContainer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceCraftContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

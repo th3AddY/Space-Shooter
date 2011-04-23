@@ -8,6 +8,8 @@
 #include "LoadingUniverseState.h"
 #include "BattleState.h"
 
+#include "MeshCache.h"
+
 using namespace Shooter;
 
 

@@ -11,6 +11,7 @@ LoadingState::LoadingState(SpaceState* nextState)
 
 void LoadingState::initialize()
 {
+	m_universe->destruct();
 }
 
 SpaceState* LoadingState::update()
@@ -23,10 +24,16 @@ SpaceState* LoadingState::update()
 	//loadingThread.join();
 	loadingProcess();
 
+
 	return m_nextState;
 }
 
 void LoadingState::setNextState(SpaceState* nextState)
 {
 	m_nextState = nextState;
+}
+
+bool LoadingState::isLoadingState()
+{
+	return true;
 }

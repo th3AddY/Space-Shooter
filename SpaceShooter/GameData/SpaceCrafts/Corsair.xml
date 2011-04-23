@@ -1,6 +1,6 @@
 <spacecraft>
 
-  <model file="GameData/models/Corsair/model.3ds">
+  <model file="GameData/meshs/Corsair/model.3ds">
     <position x="0" y="0" z="0"/>
     <attitude x="0" y="0" z="1.5705" />
     <scale x="0.23" y="0.3" z="0.3" />

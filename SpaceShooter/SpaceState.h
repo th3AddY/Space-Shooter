@@ -41,6 +41,7 @@ namespace Shooter {
 
 		virtual void initialize() {}
 		virtual SpaceState* update() { return 0; }
+		virtual bool isLoadingState() { return false; }
 
 		void updateMouseMotion();
 		void updateMousePosition(unsigned int x, unsigned int y);

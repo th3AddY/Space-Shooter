@@ -2,93 +2,83 @@
 
 using namespace Shooter;
 
-SpaceCraftBuilder* SpaceCraftBuilder::m_instance = 0;
-
-SpaceCraftBuilder* SpaceCraftBuilder::get()
+SpaceCraft* SpaceCraftBuilder::build(char* filename, double* simTimeDiff)
 {
-	if (m_instance == 0)
-		m_instance = new SpaceCraftBuilder();
+	Node* node = fromFile(filename);
 
-	return m_instance;
+	try
+	{
+		SpaceCraft* spaceCraft = dynamic_cast<SpaceCraft*>(node);
+		spaceCraft->setSimTimePointer(simTimeDiff);
+
+		return spaceCraft;
+	}
+	catch (int)
+	{
+		return 0;
+	}
 }
 
-void SpaceCraftBuilder::clear()
+CacheContainer* SpaceCraftBuilder::load(char* filename)
 {
-	for(unsigned int i=0; i<m_spaceCraftCache.size(); i++)
+	XercesDOMParser* parser    = new XercesDOMParser();
+	ErrorHandler* errorHandler = new HandlerBase();
+
+	parser->setValidationScheme(XercesDOMParser::Val_Always);
+	parser->setErrorHandler(errorHandler);
+
+	try
 	{
-		m_spaceCraftCache[i]->node.release();
-		delete m_spaceCraftCache[i];
+		parser->parse(filename);
+	}
+	catch(const XMLException& e)
+	{
+		std::cout << e.getMessage() << std::endl;
+
+		return new SpaceCraftContainer();
+	}
+	catch(const DOMException& e)
+	{
+		std::cout << e.getMessage() << std::endl;
+
+		return new SpaceCraftContainer();
+	}
+	catch(const SAXException& e)
+	{
+		std::cout << e.getMessage() << std::endl;
+
+		return new SpaceCraftContainer();
 	}
 
-	m_spaceCraftCache.clear();
-	delete m_instance;
-	m_instance = 0;
+	SpaceCraftContainer* container = parseXML(parser->getDocument());
+	buildSpaceCraftNode(container);
+
+	delete errorHandler;
+	delete parser;
+
+	return container;
 }
 
-SpaceCraft* SpaceCraftBuilder::fromFile(char* filename, double* simTimeDiff)
+Node* SpaceCraftBuilder::getNode(CacheContainer* container)
 {
-	SpaceCraftData* data = findCache(filename);
-
-	if (data == 0)
+	try
 	{
-		XercesDOMParser* parser    = new XercesDOMParser();
-		ErrorHandler* errorHandler = new HandlerBase();
+		SpaceCraftContainer* scontainer = dynamic_cast<SpaceCraftContainer*>(container);
 
-		parser->setValidationScheme(XercesDOMParser::Val_Always);
-		parser->setErrorHandler(errorHandler);
+		SpaceCraft* spaceCraft = new SpaceCraft(scontainer->params);
+		spaceCraft->addChild(scontainer->node);
 
-		try
-		{
-			parser->parse(filename);
-		}
-		catch(const XMLException& e)
-		{
-			std::cout << e.getMessage() << std::endl;
-
-			return 0;
-		}
-		catch(const DOMException& e)
-		{
-			std::cout << e.getMessage() << std::endl;
-
-			return 0;
-		}
-		catch(const SAXException& e)
-		{
-			std::cout << e.getMessage() << std::endl;
-
-			return 0;
-		}
-
-		data = parseXML(parser->getDocument());
-
-		data->filename = filename;
-		buildSpaceCraftNode(data);
-
-		m_spaceCraftCache.push_back(data);
-
-		delete errorHandler;
-		delete parser;
+		return spaceCraft;
 	}
-
-	SpaceCraft* spaceCraft = new SpaceCraft(simTimeDiff, data->params);
-	spaceCraft->addChild(data->node);
-
-	return spaceCraft;
+	catch(int)
+	{
+		return 0;
+	}
 }
 
-SpaceCraftData* SpaceCraftBuilder::findCache(char* filename)
+SpaceCraftContainer* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 {
-	for (unsigned int i=0; i<m_spaceCraftCache.size(); i++)
-		if (getLower(m_spaceCraftCache[i]->filename) == getLower(filename))
-			return m_spaceCraftCache[i];
-
-	return 0;
-}
-
-SpaceCraftData* SpaceCraftBuilder::parseXML(DOMDocument* doc)
-{
-	SpaceCraftData* data = new SpaceCraftData();
+	SpaceCraftContainer* container = new SpaceCraftContainer();
 
 	DOMNodeList* root = doc->getChildNodes();
 
@@ -111,20 +101,20 @@ SpaceCraftData* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 					for (unsigned int k=0; k<categoryAttributes->getLength(); k++)
 						if (getLower(XMLString::transcode(categoryAttributes->item(k)->getNodeName())) == "file")
 						{
-							data->modelFilename = XMLString::transcode(categoryAttributes->item(k)->getNodeValue());
+							container->modelFilename = XMLString::transcode(categoryAttributes->item(k)->getNodeValue());
 							break;
 						}
 
 					for (unsigned int k=0; k<categoryChilds->getLength(); k++)
 					{
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "position")
-							data->position = XMLGetVec3(categoryChilds->item(k));
+							container->position = XMLGetVec3(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "scale")
-							data->scale = XMLGetVec3(categoryChilds->item(k));
+							container->scale = XMLGetVec3(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "attitude")
-							data->attitude = XMLGetQuat(categoryChilds->item(k));
+							container->attitude = XMLGetQuat(categoryChilds->item(k));
 					}
 				}
 
@@ -136,40 +126,40 @@ SpaceCraftData* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 					for (unsigned int k=0; k<categoryChilds->getLength(); k++)
 					{
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "defaultspeed")
-							data->params.defaultSpeed = XMLGetScalar(categoryChilds->item(k));
+							container->params.defaultSpeed = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "minspeed")
-							data->params.minSpeed = XMLGetScalar(categoryChilds->item(k));
+							container->params.minSpeed = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "maxspeed")
-							data->params.maxSpeed = XMLGetScalar(categoryChilds->item(k));
+							container->params.maxSpeed = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "forwardacceleration")
-							data->params.forwardAcceleration = XMLGetScalar(categoryChilds->item(k));
+							container->params.forwardAcceleration = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "backwardacceleration")
-							data->params.backwardAcceleration = XMLGetScalar(categoryChilds->item(k));
+							container->params.backwardAcceleration = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "defaultspeedacceleration")
-							data->params.defaultSpeedAcceleration = XMLGetScalar(categoryChilds->item(k));
+							container->params.defaultSpeedAcceleration = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "maxlateraldeflection")
-							data->params.maxLateralDeflection = XMLGetScalar(categoryChilds->item(k));
+							container->params.maxLateralDeflection = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "maxattitudedeflection")
-							data->params.maxAttitudeDeflection = XMLGetScalar(categoryChilds->item(k));
+							container->params.maxAttitudeDeflection = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "attitudereduction")
-							data->params.attitudeReduction = XMLGetScalar(categoryChilds->item(k));
+							container->params.attitudeReduction = XMLGetScalar(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "followerattitude")
-							data->params.followerAttitude = XMLGetQuat(categoryChilds->item(k));
+							container->params.followerAttitude = XMLGetQuat(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "followerposition")
-							data->params.followerPosition = XMLGetVec3(categoryChilds->item(k));
+							container->params.followerPosition = XMLGetVec3(categoryChilds->item(k));
 
 						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "followerconvergence")
-							data->params.followerConvergence = XMLGetScalar(categoryChilds->item(k));
+							container->params.followerConvergence = XMLGetScalar(categoryChilds->item(k));
 					}
 				}
 			}
@@ -178,17 +168,17 @@ SpaceCraftData* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 		}
 	}
 
-	return data;
+	return container;
 }
 
-void SpaceCraftBuilder::buildSpaceCraftNode(SpaceCraftData* data)
+void SpaceCraftBuilder::buildSpaceCraftNode(SpaceCraftContainer* container)
 {
 	PositionAttitudeTransform* transform = new PositionAttitudeTransform();
-	transform->setScale(data->scale);
-	transform->setAttitude(data->attitude);
-	transform->setPosition(data->position);
+	transform->setScale(container->scale);
+	transform->setAttitude(container->attitude);
+	transform->setPosition(container->position);
 
-	transform->addChild(ModelCache::get()->fromFile(data->modelFilename));
+	transform->addChild(MeshCache::get().fromFile(container->modelFilename));
 
-	data->node = transform;
+	container->node = transform;
 }

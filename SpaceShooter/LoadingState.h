@@ -13,6 +13,7 @@ namespace Shooter
 
 		void initialize();
 		SpaceState* update();
+		bool isLoadingState();
 
 		void setNextState(SpaceState* nextState);
 	protected:

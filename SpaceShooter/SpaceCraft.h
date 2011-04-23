@@ -36,7 +36,7 @@ namespace Shooter
 	class SpaceCraft : public Matter
 	{
 	public:
-		SpaceCraft(double* simTimeDiff, SpaceCraftParams params);
+		SpaceCraft(SpaceCraftParams params);
 
 		void update();
 

@@ -5,7 +5,8 @@ using namespace Shooter;
 SpaceConstruct::SpaceConstruct()
 	: m_prevSimTime(0),
 	  m_currentState(0),
-	  m_cursorTime(0)
+	  m_cursorTime(0),
+	  ignoreSimTime(false)
 {
 	initializeXerces();
 	initializeGraphicsMode();
@@ -16,8 +17,8 @@ SpaceConstruct::SpaceConstruct()
 
 SpaceConstruct::~SpaceConstruct()
 {
-	SpaceCraftBuilder::get()->clear();
-	ModelCache::get()->clear();
+	MeshCache::get().clear();
+	SpaceCraftBuilder::get().clear();
 
 	XMLPlatformUtils::Terminate();
 
@@ -46,6 +47,8 @@ void SpaceConstruct::setState(SpaceState* state)
 {
 	if (m_currentState != 0)
 	{
+		ignoreSimTime = m_currentState->isLoadingState();
+
 		state->assignInputState(m_currentState);
 		state->flushEvents();
 		m_viewer.removeEventHandler(m_currentState);
@@ -60,6 +63,10 @@ void SpaceConstruct::setState(SpaceState* state)
 	data.simTimeDiff = &m_simTimeDiff;
 
 	m_currentState->setGameData(data);
+
+	// if (m_currentState->isLoadingState())
+	//	m_viewer.rem
+
 	m_viewer.addEventHandler(m_currentState);
 
 	m_currentState->initialize();
@@ -94,7 +101,17 @@ int SpaceConstruct::run()
 void SpaceConstruct::recalcSimTime()
 {
 	m_currSimTime = m_viewer.getFrameStamp()->getSimulationTime();
-	m_simTimeDiff = m_currSimTime - m_prevSimTime;
+
+	if (ignoreSimTime == true)
+	{
+		m_simTimeDiff = 0;
+		ignoreSimTime = false;
+	}
+	else
+	{
+		m_simTimeDiff = m_currSimTime - m_prevSimTime;
+	}
+
     m_prevSimTime = m_currSimTime;
 }
 

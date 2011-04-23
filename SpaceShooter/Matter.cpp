@@ -2,7 +2,11 @@
 
 using namespace Shooter;
 
-Matter::Matter(double* simTimeDiff)
+Matter::Matter()
+{
+}
+
+void Matter::setSimTimePointer(double* simTimeDiff)
 {
 	m_simTimeDiff = simTimeDiff;
 }
