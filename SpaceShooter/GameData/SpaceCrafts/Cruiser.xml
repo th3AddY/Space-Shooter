@@ -1,10 +1,6 @@
 <spacecraft>
 
-  <model file="GameData/meshs/Cruiser/model.3ds">
-    <position x="0" y="0" z="0"/>
-    <attitude x="0" y="-1.5705" z="0" />
-    <scale x="0.1" y="0.1" z="0.1" />
-  </model>
+  <model file="GameData/models/Cruiser.xml" />
 
   <parameters>
     <defaultSpeed value="12" />

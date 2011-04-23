@@ -10,7 +10,7 @@
 #include <xercesc/sax/HandlerBase.hpp>
 
 #include "Cache.h"
-#include "MeshCache.h"
+#include "ModelCache.h"
 #include "SpaceCraftContainer.h"
 #include "Misc.h"
 
@@ -31,7 +31,5 @@ namespace Shooter
 
 	private:
 		SpaceCraftContainer* parseXML(DOMDocument* doc);
-		
-		void buildSpaceCraftNode(SpaceCraftContainer* container);
 	};
 }

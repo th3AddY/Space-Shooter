@@ -89,6 +89,7 @@
     <ClCompile Include="MatterCallback.cpp" />
     <ClCompile Include="MeshCache.cpp" />
     <ClCompile Include="Misc.cpp" />
+    <ClCompile Include="ModelCache.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpaceConstruct.cpp" />
     <ClCompile Include="SpaceConstructCallback.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="MatterCallback.h" />
     <ClInclude Include="MeshCache.h" />
     <ClInclude Include="Misc.h" />
+    <ClInclude Include="ModelCache.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SpaceConstruct.h" />
     <ClInclude Include="SpaceConstructCallback.h" />
@@ -123,6 +125,10 @@
     <ClInclude Include="Universe.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GameData\models\Corsair.xml" />
+    <None Include="GameData\models\Cruiser.xml" />
+    <None Include="GameData\models\Fighter.xml" />
+    <None Include="GameData\models\Frigate.xml" />
     <None Include="GameData\SpaceCrafts\Corsair.xml">
       <SubType>Designer</SubType>
     </None>

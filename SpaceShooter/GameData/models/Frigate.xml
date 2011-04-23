@@ -1,0 +1,9 @@
+<model>
+
+  <mesh file="GameData/meshs/Frigate/model.3ds">
+    <position x="0" y="0" z="0"/>
+    <attitude x="0" y="-1.5705" z="0" />
+    <scale x="0.13" y="0.13" z="0.13" />
+  </mesh>
+
+</model>

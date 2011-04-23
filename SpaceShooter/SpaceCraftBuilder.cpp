@@ -51,7 +51,6 @@ CacheContainer* SpaceCraftBuilder::load(char* filename)
 	}
 
 	SpaceCraftContainer* container = parseXML(parser->getDocument());
-	buildSpaceCraftNode(container);
 
 	delete errorHandler;
 	delete parser;
@@ -96,7 +95,6 @@ SpaceCraftContainer* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 				if (getLower(XMLString::transcode(categoryNode->getNodeName())) == "model")
 				{
 					DOMNamedNodeMap* categoryAttributes = categoryNode->getAttributes();
-					DOMNodeList* categoryChilds = categoryNode->getChildNodes();
 
 					for (unsigned int k=0; k<categoryAttributes->getLength(); k++)
 						if (getLower(XMLString::transcode(categoryAttributes->item(k)->getNodeName())) == "file")
@@ -104,18 +102,6 @@ SpaceCraftContainer* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 							container->modelFilename = XMLString::transcode(categoryAttributes->item(k)->getNodeValue());
 							break;
 						}
-
-					for (unsigned int k=0; k<categoryChilds->getLength(); k++)
-					{
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "position")
-							container->position = XMLGetVec3(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "scale")
-							container->scale = XMLGetVec3(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "attitude")
-							container->attitude = XMLGetQuat(categoryChilds->item(k));
-					}
 				}
 
 				// PARAMS
@@ -168,17 +154,7 @@ SpaceCraftContainer* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 		}
 	}
 
+	container->node = ModelCache::get().fromFile(container->modelFilename);
+
 	return container;
-}
-
-void SpaceCraftBuilder::buildSpaceCraftNode(SpaceCraftContainer* container)
-{
-	PositionAttitudeTransform* transform = new PositionAttitudeTransform();
-	transform->setScale(container->scale);
-	transform->setAttitude(container->attitude);
-	transform->setPosition(container->position);
-
-	transform->addChild(MeshCache::get().fromFile(container->modelFilename));
-
-	container->node = transform;
 }

@@ -10,9 +10,9 @@ namespace Shooter
 	public:
 		char* modelFilename;
 
-		Vec3 position;
+		/* Vec3 position;
 		Vec3 scale;
-		Quat attitude;
+		Quat attitude; */
 
 		SpaceCraftParams params;
 	};

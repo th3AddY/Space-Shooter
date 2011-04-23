@@ -30,6 +30,9 @@
     <Filter Include="Cache">
       <UniqueIdentifier>{146d2540-0500-4740-bb4b-69c7c91bf4a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Models">
+      <UniqueIdentifier>{066b8b76-18b5-4baf-ac60-b647dca1a466}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Follower.cpp">
@@ -93,6 +96,9 @@
       <Filter>Cache</Filter>
     </ClCompile>
     <ClCompile Include="SpaceCraftContainer.cpp">
+      <Filter>Cache</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelCache.cpp">
       <Filter>Cache</Filter>
     </ClCompile>
   </ItemGroup>
@@ -160,6 +166,9 @@
     <ClInclude Include="SpaceCraftContainer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ModelCache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GameData\SpaceCrafts\Fighter.xml">
@@ -173,6 +182,18 @@
     </None>
     <None Include="GameData\SpaceCrafts\Frigate.xml">
       <Filter>Resource Files\SpaceCrafts</Filter>
+    </None>
+    <None Include="GameData\models\Corsair.xml">
+      <Filter>Resource Files\Models</Filter>
+    </None>
+    <None Include="GameData\models\Cruiser.xml">
+      <Filter>Resource Files\Models</Filter>
+    </None>
+    <None Include="GameData\models\Fighter.xml">
+      <Filter>Resource Files\Models</Filter>
+    </None>
+    <None Include="GameData\models\Frigate.xml">
+      <Filter>Resource Files\Models</Filter>
     </None>
   </ItemGroup>
 </Project>
