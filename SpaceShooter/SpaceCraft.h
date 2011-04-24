@@ -38,6 +38,7 @@ namespace Shooter
 	public:
 		SpaceCraft(SpaceCraftParams params);
 
+		void prepare();
 		void update();
 
 		void controlDirection(Vec2 direction);

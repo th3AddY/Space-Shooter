@@ -12,6 +12,7 @@ LoadingState::LoadingState(SpaceState* nextState)
 void LoadingState::initialize()
 {
 	m_universe->destruct();
+	m_universe->useMenuGroup();
 }
 
 SpaceState* LoadingState::update()

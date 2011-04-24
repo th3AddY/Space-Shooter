@@ -21,6 +21,7 @@ namespace Shooter
 	{
 		public:
 			Universe();
+			~Universe();
 
 			void addSkybox(char* dir);
 
@@ -34,7 +35,15 @@ namespace Shooter
 			Player* getPlayer(unsigned int i);
 			unsigned int getPlayerCount();
 
+			void addSpaceCraft(SpaceCraft* spaceCraft);
+
 			Human* getHumanPlayer();
+
+			Group* getSceneGroup();
+			Group* getMenuGroup();
+
+			void useSceneGroup();
+			void useMenuGroup();
 		private:
 			char* m_skyboxDirectory;
 			PositionAttitudeTransform* m_skyboxTransform;
@@ -42,7 +51,12 @@ namespace Shooter
 			bool m_built;
 
 			vector<Player*> m_players;
+			vector<SpaceCraft*> m_spaceCrafts;
+
 			Human* m_humanPlayer;
+
+			ref_ptr<Group> m_menuGroup;
+			ref_ptr<Group> m_sceneGroup;
 	};
 
 }

@@ -6,7 +6,7 @@ void MatterCallback::operator()(Node* node, NodeVisitor* nv)
 {
 	try
 	{
-		Matter* matter = dynamic_cast<Matter*>(node);
+		Matter* matter = static_cast<Matter*>(node);
 		matter->update();
 	} catch(int) {}
 

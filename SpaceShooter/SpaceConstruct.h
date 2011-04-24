@@ -24,10 +24,12 @@ namespace Shooter
 
 		SpaceState* getCurrentState();
 
+		void preRender();
 		int run();
+	private:
 		void recalcSimTime();
 		void updateCursor();
-	private:
+
 		bool initializeXerces();
 		void initializeGraphicsMode();
 		void setUpCursor();
@@ -47,7 +49,7 @@ namespace Shooter
 		unsigned int m_nativeResolution[2];
 		unsigned int m_gameResolution[2];
 
-		bool ignoreSimTime;
+		bool m_ignoreSimTime;
 	};
 
 }

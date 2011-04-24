@@ -19,7 +19,7 @@ void LoadingUniverseState::loadingProcess()
 		geode = new Geode();
 		geode->addDrawable(new ShapeDrawable(new Sphere()));
 		transform->addChild(geode);
-		m_universe->addChild(transform);
+		m_universe->getSceneGroup()->addChild(transform);
 		transform->setPosition(Vec3(rand() % 200 - 100, rand() % 200 + 10, rand() % 200 - 100));
 	}
 
@@ -39,10 +39,10 @@ void LoadingUniverseState::loadingProcess()
 	cruiser->setPosition(Vec3(200, 0, 0));
 	cruiser->setAttitude(getQuatFromEuler(0, 3.141/2, 0));
 
-	m_universe->addChild(fighter);
-	m_universe->addChild(cruiser);
-	m_universe->addChild(corsair);
-	m_universe->addChild(frigate);
+	m_universe->addSpaceCraft(fighter);
+	m_universe->addSpaceCraft(cruiser);
+	m_universe->addSpaceCraft(corsair);
+	m_universe->addSpaceCraft(frigate);
 
 	Human* human = new Human();
 	human->assignSpaceCraft(fighter);

@@ -11,8 +11,7 @@ SpaceConstructCallback::SpaceConstructCallback(SpaceConstruct* c)
 
 void SpaceConstructCallback::operator()(Node* node, NodeVisitor* nv)
 {
-	m_spaceConstruct->recalcSimTime();
-	m_spaceConstruct->updateCursor();
+	m_spaceConstruct->preRender();
 
 	SpaceState* newState =
 		m_spaceConstruct->getCurrentState()->update();

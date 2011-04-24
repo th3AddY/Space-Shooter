@@ -9,10 +9,11 @@ SpaceCraft::SpaceCraft(SpaceCraftParams params)
 	  m_params(params)
 {
 	m_speed = m_params.defaultSpeed;
+}
 
+void SpaceCraft::prepare()
+{
 	getFollowerPosition(&m_followerPosition, &m_followerAttitude);
-
-	setUpdateCallback(new MatterCallback());
 }
 
 void SpaceCraft::update()

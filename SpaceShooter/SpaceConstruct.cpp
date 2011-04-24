@@ -6,7 +6,7 @@ SpaceConstruct::SpaceConstruct()
 	: m_prevSimTime(0),
 	  m_currentState(0),
 	  m_cursorTime(0),
-	  ignoreSimTime(false)
+	  m_ignoreSimTime(false)
 {
 	initializeXerces();
 	initializeGraphicsMode();
@@ -47,7 +47,7 @@ void SpaceConstruct::setState(SpaceState* state)
 {
 	if (m_currentState != 0)
 	{
-		ignoreSimTime = m_currentState->isLoadingState();
+		m_ignoreSimTime = m_currentState->isLoadingState();
 
 		state->assignInputState(m_currentState);
 		state->flushEvents();
@@ -64,9 +64,6 @@ void SpaceConstruct::setState(SpaceState* state)
 
 	m_currentState->setGameData(data);
 
-	// if (m_currentState->isLoadingState())
-	//	m_viewer.rem
-
 	m_viewer.addEventHandler(m_currentState);
 
 	m_currentState->initialize();
@@ -80,6 +77,15 @@ void SpaceConstruct::setUpdater(NodeCallback* callback)
 SpaceState* SpaceConstruct::getCurrentState()
 {
 	return m_currentState;
+}
+
+void SpaceConstruct::preRender()
+{
+	if (m_ignoreSimTime)
+		m_universe->useSceneGroup();
+
+	recalcSimTime();
+	updateCursor();
 }
 
 int SpaceConstruct::run()
@@ -102,10 +108,10 @@ void SpaceConstruct::recalcSimTime()
 {
 	m_currSimTime = m_viewer.getFrameStamp()->getSimulationTime();
 
-	if (ignoreSimTime == true)
+	if (m_ignoreSimTime == true)
 	{
 		m_simTimeDiff = 0;
-		ignoreSimTime = false;
+		m_ignoreSimTime = false;
 	}
 	else
 	{

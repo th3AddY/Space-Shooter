@@ -8,7 +8,7 @@ SpaceCraft* SpaceCraftBuilder::build(char* filename, double* simTimeDiff)
 
 	try
 	{
-		SpaceCraft* spaceCraft = dynamic_cast<SpaceCraft*>(node);
+		SpaceCraft* spaceCraft = static_cast<SpaceCraft*>(node);
 		spaceCraft->setSimTimePointer(simTimeDiff);
 
 		return spaceCraft;
@@ -62,7 +62,7 @@ Node* SpaceCraftBuilder::getNode(CacheContainer* container)
 {
 	try
 	{
-		SpaceCraftContainer* scontainer = dynamic_cast<SpaceCraftContainer*>(container);
+		SpaceCraftContainer* scontainer = static_cast<SpaceCraftContainer*>(container);
 
 		SpaceCraft* spaceCraft = new SpaceCraft(scontainer->params);
 		spaceCraft->addChild(scontainer->node);
