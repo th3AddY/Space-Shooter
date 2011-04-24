@@ -195,5 +195,11 @@
     <None Include="GameData\models\Frigate.xml">
       <Filter>Resource Files\Models</Filter>
     </None>
+    <None Include="GameData\models\Spaceshipstation.xml">
+      <Filter>Resource Files\Models</Filter>
+    </None>
+    <None Include="GameData\models\Spacestation.xml">
+      <Filter>Resource Files\Models</Filter>
+    </None>
   </ItemGroup>
 </Project>

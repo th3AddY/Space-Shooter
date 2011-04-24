@@ -129,6 +129,8 @@
     <None Include="GameData\models\Cruiser.xml" />
     <None Include="GameData\models\Fighter.xml" />
     <None Include="GameData\models\Frigate.xml" />
+    <None Include="GameData\models\Spaceshipstation.xml" />
+    <None Include="GameData\models\Spacestation.xml" />
     <None Include="GameData\SpaceCrafts\Corsair.xml">
       <SubType>Designer</SubType>
     </None>

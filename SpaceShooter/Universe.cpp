@@ -120,7 +120,7 @@ int Universe::build()
 		m_sceneGroup->getStateSet()->setMode(GL_LIGHT0, StateAttribute::ON);
 
 		LightModel* lm = new LightModel();
-		lm->setAmbientIntensity(Vec4(0.5f, 0.5f, 0.5f, 1.0f));
+		lm->setAmbientIntensity(Vec4(0.7f, 0.7f, 0.7f, 1.0f));
 		m_sceneGroup->getStateSet()->setAttribute(lm, StateAttribute::ON);
 		//////////////
 

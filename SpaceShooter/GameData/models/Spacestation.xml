@@ -1,0 +1,9 @@
+<model>
+
+  <mesh file="GameData/meshs/Spacestation/model.3ds">
+    <position x="-100" y="0" z="-100"/>
+    <attitude x="0" y="-1.5705" z="0" />
+    <scale x="2" y="2" z="2" />
+  </mesh>
+
+</model>
