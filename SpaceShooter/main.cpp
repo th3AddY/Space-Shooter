@@ -17,6 +17,6 @@ int main(int argc, char** argv)
 {
 	SpaceConstruct construct;
 	construct.setUpdater(new SpaceConstructCallback(&construct));
-	construct.setState(new LoadingUniverseState(new BattleState()));
+	construct.setState(new LoadingUniverseState(new BattleState(), "GameData/levels/testmap.xml"));
 	return construct.run();
 }

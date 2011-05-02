@@ -18,7 +18,9 @@ SpaceConstruct::SpaceConstruct()
 SpaceConstruct::~SpaceConstruct()
 {
 	MeshCache::get().clear();
+	ModelCache::get().clear();
 	SpaceCraftBuilder::get().clear();
+	ObstacleBuilder::get().clear();
 
 	XMLPlatformUtils::Terminate();
 

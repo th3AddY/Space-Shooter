@@ -79,82 +79,74 @@ SpaceCraftContainer* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 {
 	SpaceCraftContainer* container = new SpaceCraftContainer();
 
-	DOMNodeList* root = doc->getChildNodes();
+	if (getLower(XMLString::transcode(doc->getDocumentElement()->getNodeName())) != "spacecraft")
+		return 0;
 
-	for (unsigned int i=0; i<root->getLength(); i++)
+	DOMElement* modelElement = static_cast<DOMElement*>(doc->getElementsByTagName(XMLString::transcode("model"))->item(0));
+	if (modelElement != 0)
 	{
-	
-		if (getLower(XMLString::transcode(root->item(i)->getNodeName())) == "spacecraft")
-		{
-			DOMNodeList* category = root->item(i)->getChildNodes();
-			for (unsigned int j=0; j<category->getLength(); j++)
+		DOMNamedNodeMap* categoryAttributes = modelElement->getAttributes();
+
+		for (unsigned int k=0; k<categoryAttributes->getLength(); k++)
+			if (getLower(XMLString::transcode(categoryAttributes->item(k)->getNodeName())) == "file")
 			{
-				DOMNode* categoryNode = category->item(j);
-
-				// MODEL
-				if (getLower(XMLString::transcode(categoryNode->getNodeName())) == "model")
-				{
-					DOMNamedNodeMap* categoryAttributes = categoryNode->getAttributes();
-
-					for (unsigned int k=0; k<categoryAttributes->getLength(); k++)
-						if (getLower(XMLString::transcode(categoryAttributes->item(k)->getNodeName())) == "file")
-						{
-							container->modelFilename = XMLString::transcode(categoryAttributes->item(k)->getNodeValue());
-							break;
-						}
-				}
-
-				// PARAMS
-				if (getLower(XMLString::transcode(categoryNode->getNodeName())) == "parameters")
-				{
-					DOMNodeList* categoryChilds = categoryNode->getChildNodes();
-
-					for (unsigned int k=0; k<categoryChilds->getLength(); k++)
-					{
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "defaultspeed")
-							container->params.defaultSpeed = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "minspeed")
-							container->params.minSpeed = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "maxspeed")
-							container->params.maxSpeed = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "forwardacceleration")
-							container->params.forwardAcceleration = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "backwardacceleration")
-							container->params.backwardAcceleration = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "defaultspeedacceleration")
-							container->params.defaultSpeedAcceleration = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "maxlateraldeflection")
-							container->params.maxLateralDeflection = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "maxattitudedeflection")
-							container->params.maxAttitudeDeflection = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "attitudereduction")
-							container->params.attitudeReduction = XMLGetScalar(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "followerattitude")
-							container->params.followerAttitude = XMLGetQuat(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "followerposition")
-							container->params.followerPosition = XMLGetVec3(categoryChilds->item(k));
-
-						if (getLower(XMLString::transcode(categoryChilds->item(k)->getNodeName())) == "followerconvergence")
-							container->params.followerConvergence = XMLGetScalar(categoryChilds->item(k));
-					}
-				}
+				container->node = ModelCache::get().fromFile(XMLString::transcode(categoryAttributes->item(k)->getNodeValue()));
+				// container->modelFilename = XMLString::transcode(categoryAttributes->item(k)->getNodeValue());
+				break;
 			}
-
-			break;
-		}
 	}
 
-	container->node = ModelCache::get().fromFile(container->modelFilename);
+	DOMElement* parametersElement = static_cast<DOMElement*>(doc->getElementsByTagName(XMLString::transcode("parameters"))->item(0));
+	if (parametersElement != 0)
+	{
+		DOMNode* defaultspeed = parametersElement->getElementsByTagName(XMLString::transcode("defaultspeed"))->item(0);
+		if (defaultspeed != 0)
+			container->params.defaultSpeed = XMLGetScalar(defaultspeed);
+
+		DOMNode* minspeed = parametersElement->getElementsByTagName(XMLString::transcode("minspeed"))->item(0);
+		if (minspeed != 0)
+			container->params.minSpeed = XMLGetScalar(minspeed);
+
+		DOMNode* maxspeed = parametersElement->getElementsByTagName(XMLString::transcode("maxspeed"))->item(0);
+		if (maxspeed != 0)
+			container->params.maxSpeed = XMLGetScalar(maxspeed);
+
+		DOMNode* forwardacceleration = parametersElement->getElementsByTagName(XMLString::transcode("forwardacceleration"))->item(0);
+		if (forwardacceleration != 0)
+			container->params.forwardAcceleration = XMLGetScalar(forwardacceleration);
+
+		DOMNode* backwardacceleration = parametersElement->getElementsByTagName(XMLString::transcode("backwardacceleration"))->item(0);
+		if (backwardacceleration != 0)
+			container->params.backwardAcceleration = XMLGetScalar(backwardacceleration);
+
+		DOMNode* defaultspeedacceleration = parametersElement->getElementsByTagName(XMLString::transcode("defaultspeedacceleration"))->item(0);
+		if (defaultspeedacceleration != 0)
+			container->params.defaultSpeedAcceleration = XMLGetScalar(defaultspeedacceleration);
+
+		DOMNode* maxlateraldeflection = parametersElement->getElementsByTagName(XMLString::transcode("maxlateraldeflection"))->item(0);
+		if (maxlateraldeflection != 0)
+			container->params.maxLateralDeflection = XMLGetScalar(maxlateraldeflection);
+
+		DOMNode* maxattitudedeflection = parametersElement->getElementsByTagName(XMLString::transcode("maxattitudedeflection"))->item(0);
+		if (maxattitudedeflection != 0)
+			container->params.maxAttitudeDeflection = XMLGetScalar(maxattitudedeflection);
+
+		DOMNode* attitudereduction = parametersElement->getElementsByTagName(XMLString::transcode("attitudereduction"))->item(0);
+		if (attitudereduction != 0)
+			container->params.attitudeReduction = XMLGetScalar(attitudereduction);
+
+		DOMNode* followerattitude = parametersElement->getElementsByTagName(XMLString::transcode("followerattitude"))->item(0);
+		if (followerattitude != 0)
+			container->params.followerAttitude = XMLGetQuat(followerattitude);
+
+		DOMNode* followerposition = parametersElement->getElementsByTagName(XMLString::transcode("followerposition"))->item(0);
+		if (followerposition != 0)
+			container->params.followerPosition = XMLGetVec3(followerposition);
+
+		DOMNode* followerconvergence = parametersElement->getElementsByTagName(XMLString::transcode("followerconvergence"))->item(0);
+		if (followerconvergence != 0)
+			container->params.followerConvergence = XMLGetScalar(followerconvergence);
+	}
 
 	return container;
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<obstacle>
+  <model file="GameData/models/Spaceshipstation.xml">
+    <position x="300" y="0" z="0" />
+  </model>
+
+  <behavior>
+
+  </behavior>
+</obstacle>

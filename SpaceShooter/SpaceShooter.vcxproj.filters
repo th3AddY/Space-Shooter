@@ -33,6 +33,15 @@
     <Filter Include="Resource Files\Models">
       <UniqueIdentifier>{066b8b76-18b5-4baf-ac60-b647dca1a466}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Obstacles">
+      <UniqueIdentifier>{bf4d1711-3fc9-438b-9561-4531b62bd9f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shader">
+      <UniqueIdentifier>{b684a22f-01d4-4da0-b774-dc9af38633d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\levels">
+      <UniqueIdentifier>{2d6d8459-3ba9-449c-b64e-2ea257587a8a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Follower.cpp">
@@ -100,6 +109,12 @@
     </ClCompile>
     <ClCompile Include="ModelCache.cpp">
       <Filter>Cache</Filter>
+    </ClCompile>
+    <ClCompile Include="ObstacleBuilder.cpp">
+      <Filter>Cache</Filter>
+    </ClCompile>
+    <ClCompile Include="Bot.cpp">
+      <Filter>Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +184,12 @@
     <ClInclude Include="ModelCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ObstacleBuilder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Bot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GameData\SpaceCrafts\Fighter.xml">
@@ -200,6 +221,21 @@
     </None>
     <None Include="GameData\models\Spacestation.xml">
       <Filter>Resource Files\Models</Filter>
+    </None>
+    <None Include="GameData\Obstacles\Spaceshipstation.xml">
+      <Filter>Resource Files\Obstacles</Filter>
+    </None>
+    <None Include="GameData\Obstacles\Spacestation.xml">
+      <Filter>Resource Files\Obstacles</Filter>
+    </None>
+    <None Include="GameData\levels\testmap.xml">
+      <Filter>Resource Files\levels</Filter>
+    </None>
+    <None Include="GameData\shader\lightingShader.frag">
+      <Filter>Resource Files\Shader</Filter>
+    </None>
+    <None Include="GameData\shader\lightingShader.vert">
+      <Filter>Resource Files\Shader</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\SDK\xerces-c-3.1.1\src;E:\SDK\boost_1_46_1;E:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\SDK\xerces-c-3.1.1\Build\Win32\VC10\Debug;E:\SDK\OpenSceneGraph-2.9.11\lib;E:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\SDK\xerces-c-3.1.1\src;C:\SDK\boost_1_46_1;C:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\SDK\xerces-c-3.1.1\Build\Win32\VC10\Debug;C:\SDK\OpenSceneGraph-2.9.11\lib;C:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -56,7 +56,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>xerces-c_3D.lib;libboost_thread-vc100-mt-gd-1_46_1.lib;OpenThreadsd.lib;osgAnimationd.lib;osgd.lib;osgDBd.lib;osgFXd.lib;osgGAd.lib;osgManipulatord.lib;osgParticled.lib;osgPresentationd.lib;osgQtd.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgViewerd.lib;osgVolumed.lib;osgWidgetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>xerces-c_3D.lib;libboost_thread-vc100-mt-gd-1_46_1.lib;OpenThreadsd.lib;osgAnimationd.lib;osgd.lib;osgDBd.lib;osgFXd.lib;osgGAd.lib;osgManipulatord.lib;osgParticled.lib;osgShadowd.lib;osgSimd.lib;osgTerraind.lib;osgTextd.lib;osgUtild.lib;osgViewerd.lib;osgVolumed.lib;osgWidgetd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BattleState.cpp" />
+    <ClCompile Include="Bot.cpp" />
     <ClCompile Include="Cache.cpp" />
     <ClCompile Include="CacheContainer.cpp" />
     <ClCompile Include="Follower.cpp" />
@@ -90,6 +91,7 @@
     <ClCompile Include="MeshCache.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="ModelCache.cpp" />
+    <ClCompile Include="ObstacleBuilder.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpaceConstruct.cpp" />
     <ClCompile Include="SpaceConstructCallback.cpp" />
@@ -102,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BattleState.h" />
+    <ClInclude Include="Bot.h" />
     <ClInclude Include="Cache.h" />
     <ClInclude Include="CacheContainer.h" />
     <ClInclude Include="DummyState.h" />
@@ -114,6 +117,7 @@
     <ClInclude Include="MeshCache.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="ModelCache.h" />
+    <ClInclude Include="ObstacleBuilder.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SpaceConstruct.h" />
     <ClInclude Include="SpaceConstructCallback.h" />
@@ -125,12 +129,29 @@
     <ClInclude Include="Universe.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="GameData\levels\testmap.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GameData\models\Corsair.xml" />
     <None Include="GameData\models\Cruiser.xml" />
-    <None Include="GameData\models\Fighter.xml" />
+    <None Include="GameData\models\Fighter.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="GameData\models\Frigate.xml" />
-    <None Include="GameData\models\Spaceshipstation.xml" />
-    <None Include="GameData\models\Spacestation.xml" />
+    <None Include="GameData\models\Spaceshipstation.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GameData\models\Spacestation.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GameData\Obstacles\Spaceshipstation.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GameData\Obstacles\Spacestation.xml">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GameData\shader\lightingShader.frag" />
+    <None Include="GameData\shader\lightingShader.vert" />
     <None Include="GameData\SpaceCrafts\Corsair.xml">
       <SubType>Designer</SubType>
     </None>

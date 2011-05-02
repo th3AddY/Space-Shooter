@@ -12,6 +12,7 @@
 #include <osg/Texture2D>
 #include <osg/Depth>
 #include <osgDB/ReadFile>
+#include <osgUtil/TangentSpaceGenerator>
 
 using namespace std;
 using namespace osg;
@@ -41,9 +42,12 @@ namespace Shooter
 
 	string getLower(char* text);
 	
+	void generateTangentAndBinormal(Node* node);
+
 	// XML Helper
 	float XMLGetScalar(DOMNode* node);
 	Vec3 XMLGetVec3(DOMNode* node);
 	Quat XMLGetQuat(DOMNode* node);
+	Vec4 XMLGetColor(DOMNode* node);
 
 }

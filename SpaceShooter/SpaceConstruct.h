@@ -7,6 +7,7 @@
 #include "Universe.h"
 #include "Follower.h"
 #include "SpaceCraftBuilder.h"
+#include "ObstacleBuilder.h"
 
 using namespace xercesc;
 

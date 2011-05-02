@@ -1,9 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <model>
 
   <mesh file="GameData/meshs/Spaceshipstation/model.3ds">
-    <position x="300" y="0" z="0"/>
+    <position x="0" y="0" z="0"/>
     <attitude x="0" y="-1.5705" z="0" />
     <scale x="10" y="10" z="10" />
+
+    <shader fragment="GameData/shader/lightingShader.frag" vertex="GameData/shader/lightingShader.vert">
+      <sampler file="GameData/meshs/spaceshipstation/colormap.tga" uniform="colormap" />
+      <sampler file="GameData/meshs/spaceshipstation/specularmap.tga" uniform="specularmap" />
+      <sampler file="GameData/meshs/spaceshipstation/illumination.tga" uniform="illumination" />
+
+      <uniform name="colormapOn" value="1" />
+      <uniform name="normalmapOn" value="0" />
+      <uniform name="specularmapOn" value="1" />
+      <uniform name="illuminationOn" value="1" />
+    </shader>
+
+    <material>
+      <ambient r="0.1" g="0.1" b="0.1" a="1" />
+      <diffuse r="0.9" g="0.9" b="0.9" a="1"/>
+      <specular r="0.6" g="0.6" b="0.6" a="1" />
+      <shininess value="128" />
+    </material>
+
   </mesh>
 
 </model>

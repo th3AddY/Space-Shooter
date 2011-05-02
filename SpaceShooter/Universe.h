@@ -2,10 +2,15 @@
 
 #include <vector>
 
+#include <xercesc/dom/DOM.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp>
+#include <xercesc/sax/HandlerBase.hpp>
+
 #include <osg/Group>
 #include <osg/PositionAttitudeTransform>
 #include <osg/LightSource>
 #include <osg/LightModel>
+#include <osgUtil/SmoothingVisitor>
 
 #include "Follower.h"
 #include "Misc.h"
@@ -13,6 +18,7 @@
 
 using namespace osg;
 using namespace std;
+using namespace xercesc;
 
 namespace Shooter
 {
@@ -22,6 +28,9 @@ namespace Shooter
 		public:
 			Universe();
 			~Universe();
+
+			void loadFromFile(char* filename);
+			void loadFromDocument(DOMDocument* doc);
 
 			void addSkybox(char* dir);
 

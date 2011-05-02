@@ -315,3 +315,52 @@ Quat Shooter::XMLGetQuat(DOMNode* node)
 
 	return getQuatFromEuler(x, y, z);
 }
+
+Vec4 Shooter::XMLGetColor(DOMNode* node)
+{
+	float r=0,g=0,b=0,a=0;
+
+	DOMNamedNodeMap* attributes = node->getAttributes();
+
+	for (unsigned int i=0; i<attributes->getLength(); i++)
+	{
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "r")
+			r = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "g")
+			g = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "b")
+			b = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(attributes->item(i)->getNodeName())) == "a")
+			a = atof(XMLString::transcode(attributes->item(i)->getNodeValue()));
+	}
+
+	return Vec4(r, g, b, a);
+}
+
+void Shooter::generateTangentAndBinormal(Node* node)
+{
+	Group* group = node->asGroup();
+	Geode* geode = node->asGeode();
+
+	if (group)
+	{
+		for (unsigned int i=0; i<group->getNumChildren(); i++)
+			generateTangentAndBinormal(group->getChild(i));
+	} else if (geode)
+	{
+		for (unsigned int i=0; i<geode->getNumDrawables(); i++)
+		{
+			Geometry *geometry = geode->getDrawable(i)->asGeometry();
+			if(geometry)
+			{
+				ref_ptr<osgUtil::TangentSpaceGenerator> tsg = new osgUtil::TangentSpaceGenerator();
+				tsg->generate(geometry);
+
+				geometry->setVertexAttribData(6, Geometry::ArrayData(tsg->getTangentArray(), Geometry::BIND_PER_VERTEX));
+				geometry->setVertexAttribData(7, Geometry::ArrayData(tsg->getBinormalArray(), Geometry::BIND_PER_VERTEX, GL_FALSE));
+
+				tsg.release();
+			}
+		}
+	}
+}

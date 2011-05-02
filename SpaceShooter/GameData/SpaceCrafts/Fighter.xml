@@ -1,22 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <spacecraft>
 
   <model file="GameData/models/Fighter.xml" />
 
   <parameters>
-    <defaultSpeed value="20" />
-	  <minSpeed value="10" />
-	  <maxSpeed value="64" />
-	  <forwardAcceleration value="25" />
-	  <backwardAcceleration value="25" />
-	  <defaultSpeedAcceleration value="20" />
+    <defaultspeed value="20" />
+	  <minspeed value="10" />
+	  <maxspeed value="64" />
+	  <forwardacceleration value="25" />
+	  <backwardacceleration value="25" />
+	  <defaultspeedacceleration value="20" />
 
-	  <maxLateralDeflection value="3" />
-	  <maxAttitudeDeflection value="4" />
-	  <attitudeReduction value="50" />
+	  <maxlateraldeflection value="3" />
+	  <maxattitudedeflection value="4" />
+	  <attitudereduction value="50" />
 
-    <followerAttitude x="0" y="0" z="-0.4" />
-	  <followerPosition x="0" y="-10" z="6" />
-	  <followerConvergence value="100" />
+    <followerattitude x="0" y="0" z="-0.4" />
+	  <followerposition x="0" y="-10" z="6" />
+	  <followerconvergence value="100" />
   </parameters>
 
 </spacecraft>

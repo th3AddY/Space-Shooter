@@ -1,9 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <model>
 
   <mesh file="GameData/meshs/Fighter/model.3ds">
     <position x="0" y="0" z="0"/>
     <attitude x="0" y="-1.5705" z="0" />
     <scale x="0.13" y="0.13" z="0.13" />
+
+    <!-- <shader fragment="GameData/shader/specmapping.frag" vertex="GameData/shader/specmapping.vert">
+      <sampler file="GameData/meshs/Fighter/colormap.tga" uniform="colormap" />
+      <sampler file="GameData/meshs/Fighter/specularmap.tga" uniform="specularmap" />
+      <sampler file="GameData/meshs/Fighter/ilumination.tga" uniform="ilumination" />
+    </shader>
+
+    <material>
+      <ambient r="1.0" g="0.0" b="0.0" a="1" />
+      <diffuse r="0.0" g="0.0" b="0.0" a="1"/>
+      <specular r="0.0" g="0.0" b="0.0" a="1" />
+      <shininess value="0" />
+    </material> -->
+    
   </mesh>
 
 </model>

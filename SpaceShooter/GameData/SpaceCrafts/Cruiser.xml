@@ -1,22 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <spacecraft>
 
   <model file="GameData/models/Cruiser.xml" />
 
   <parameters>
-    <defaultSpeed value="12" />
-    <minSpeed value="5" />
-    <maxSpeed value="48" />
-    <forwardAcceleration value="15" />
-    <backwardAcceleration value="15" />
-    <defaultSpeedAcceleration value="20" />
+    <defaultspeed value="12" />
+    <minspeed value="5" />
+    <maxspeed value="48" />
+    <forwardacceleration value="15" />
+    <backwardacceleration value="15" />
+    <defaultspeedacceleration value="20" />
 
-    <maxLateralDeflection value="1.3" />
-    <maxAttitudeDeflection value="2.5" />
-    <attitudeReduction value="10" />
+    <maxlateraldeflection value="1.3" />
+    <maxattitudedeflection value="2.5" />
+    <attitudereduction value="10" />
 
-    <followerAttitude x="0" y="0" z="-0.4" />
-    <followerPosition x="0" y="-20" z="10" />
-    <followerConvergence value="100" />
+    <followerattitude x="0" y="0" z="-0.4" />
+    <followerposition x="0" y="-20" z="10" />
+    <followerconvergence value="100" />
   </parameters>
 
 </spacecraft>
