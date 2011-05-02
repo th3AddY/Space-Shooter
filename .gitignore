@@ -6,8 +6,10 @@
 *.opensdf
 Debug/
 SpaceShooter/Debug/
+SpaceShooter/test/
 ipch/
 
 # misc
 
 *.ms3d
+*.bak
