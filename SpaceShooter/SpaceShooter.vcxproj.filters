@@ -116,6 +116,9 @@
     <ClCompile Include="Bot.cpp">
       <Filter>Player</Filter>
     </ClCompile>
+    <ClCompile Include="Obstacle.cpp">
+      <Filter>Nodes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpaceViewer.h">
@@ -190,6 +193,9 @@
     <ClInclude Include="Bot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Obstacle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="GameData\SpaceCrafts\Fighter.xml">
@@ -231,10 +237,10 @@
     <None Include="GameData\levels\testmap.xml">
       <Filter>Resource Files\levels</Filter>
     </None>
-    <None Include="GameData\shader\lightingShader.frag">
+    <None Include="GameData\shader\phong.frag">
       <Filter>Resource Files\Shader</Filter>
     </None>
-    <None Include="GameData\shader\lightingShader.vert">
+    <None Include="GameData\shader\phong.vert">
       <Filter>Resource Files\Shader</Filter>
     </None>
   </ItemGroup>

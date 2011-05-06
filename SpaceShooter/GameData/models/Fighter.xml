@@ -7,18 +7,22 @@
     <attitude x="0" y="-1.5705" z="0" />
     <scale x="0.13" y="0.13" z="0.13" />
 
-    <!-- <shader fragment="GameData/shader/specmapping.frag" vertex="GameData/shader/specmapping.vert">
+    <shader fragment="GameData/shader/phong.frag" vertex="GameData/shader/phong.vert">
       <sampler file="GameData/meshs/Fighter/colormap.tga" uniform="colormap" />
       <sampler file="GameData/meshs/Fighter/specularmap.tga" uniform="specularmap" />
-      <sampler file="GameData/meshs/Fighter/ilumination.tga" uniform="ilumination" />
+
+      <uniform name="colormapOn" value="1" />
+      <uniform name="normalmapOn" value="0" />
+      <uniform name="specularmapOn" value="1" />
+      <uniform name="illuminationOn" value="0" />
     </shader>
 
     <material>
-      <ambient r="1.0" g="0.0" b="0.0" a="1" />
-      <diffuse r="0.0" g="0.0" b="0.0" a="1"/>
-      <specular r="0.0" g="0.0" b="0.0" a="1" />
-      <shininess value="0" />
-    </material> -->
+      <ambient r="0.7" g="0.7" b="0.7" a="1" />
+      <diffuse r="0.5" g="0.5" b="0.5" a="1"/>
+      <specular r="0.3" g="0.3" b="0.3" a="1" />
+      <shininess value="8" />
+    </material>
     
   </mesh>
 

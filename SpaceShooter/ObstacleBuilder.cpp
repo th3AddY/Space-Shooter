@@ -2,6 +2,38 @@
 
 using namespace Shooter;
 
+Obstacle* ObstacleBuilder::build(char* filename, double* simTimeDiff)
+{
+	Node* node = fromFile(filename);
+
+	try
+	{
+		Obstacle* obstacle = static_cast<Obstacle*>(node);
+		obstacle->setSimTimePointer(simTimeDiff);
+
+		return obstacle;
+	}
+	catch (int)
+	{
+		return 0;
+	}
+}
+
+Node* ObstacleBuilder::getNode(CacheContainer* container)
+{
+	try
+	{
+		Obstacle* obstacle = new Obstacle();
+		obstacle->addChild(container->node);
+
+		return obstacle;
+	}
+	catch(int)
+	{
+		return 0;
+	}
+}
+
 CacheContainer* ObstacleBuilder::load(char* filename)
 {
 	XercesDOMParser* parser    = new XercesDOMParser();

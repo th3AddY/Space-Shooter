@@ -118,11 +118,11 @@ void ModelCache::parseShader(DOMNode* domnode, Node* node)
 			continue;
 		}
 
-		 if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "tesscontrol")
-		 {
-		 	loadShaderSource(program, Shader::TESSCONTROL, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "tesscontrol")
+		{
+			loadShaderSource(program, Shader::TESSCONTROL, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
 			continue;
-		 }
+		}
 
 		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "tessevaluation")
 		{
@@ -251,7 +251,7 @@ void ModelCache::loadShaderSampler(Node* node, char* file, char* uniform, int te
 	// sampler->setWrap(Texture::WRAP_S, Texture::CLAMP_TO_EDGE);
 	sampler->setFilter(Texture::MIN_FILTER, Texture::LINEAR);
 	sampler->setFilter(Texture::MAG_FILTER, Texture::LINEAR_MIPMAP_LINEAR);
-	// sampler->setMaxAnisotropy(8);
+	sampler->setMaxAnisotropy(8);
 	Image* image = osgDB::readImageFile(file);
 	if (image)
 		sampler->setImage(image);

@@ -91,6 +91,7 @@
     <ClCompile Include="MeshCache.cpp" />
     <ClCompile Include="Misc.cpp" />
     <ClCompile Include="ModelCache.cpp" />
+    <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleBuilder.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SpaceConstruct.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="MeshCache.h" />
     <ClInclude Include="Misc.h" />
     <ClInclude Include="ModelCache.h" />
+    <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstacleBuilder.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SpaceConstruct.h" />
@@ -150,8 +152,8 @@
     <None Include="GameData\Obstacles\Spacestation.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="GameData\shader\lightingShader.frag" />
-    <None Include="GameData\shader\lightingShader.vert" />
+    <None Include="GameData\shader\phong.frag" />
+    <None Include="GameData\shader\phong.vert" />
     <None Include="GameData\SpaceCrafts\Corsair.xml">
       <SubType>Designer</SubType>
     </None>

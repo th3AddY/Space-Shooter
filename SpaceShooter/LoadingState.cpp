@@ -17,6 +17,7 @@ void LoadingState::initialize()
 
 SpaceState* LoadingState::update()
 {
+
 	//thread loadingThread(bind(&LoadingState::loadingProcess, this));
 
 	//if (!loadingThread.joinable())

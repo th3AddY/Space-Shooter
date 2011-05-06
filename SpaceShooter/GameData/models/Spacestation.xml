@@ -7,13 +7,13 @@
     <scale x="2" y="2" z="2" />
 
     <material>
-      <shininess value="32" />
-      <specular r="0.5" g="0.5" b="0.5" a="1.0" />
+      <shininess value="8" />
+      <specular r="0.7" g="0.7" b="0.7" a="1.0" />
       <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
       <diffuse r="0.3" g="0.3" b="0.3" a="1.0" />
     </material>
 
-    <shader fragment="GameData/shader/lightingShader.frag" vertex="GameData/shader/lightingShader.vert">
+    <shader fragment="GameData/shader/phong.frag" vertex="GameData/shader/phong.vert">
       <sampler file="GameData/meshs/Spacestation/colormap.tga" uniform="colormap" />
       <sampler file="GameData/meshs/Spacestation/normalmap.tga" uniform="normalmap" />
       <sampler file="GameData/meshs/Spacestation/specularmap.tga" uniform="specularmap" />

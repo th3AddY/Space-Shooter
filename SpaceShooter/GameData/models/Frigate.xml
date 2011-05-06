@@ -7,7 +7,7 @@
     <attitude x="0" y="-1.5705" z="0" />
     <scale x="0.18" y="0.18" z="0.18" />
 
-    <shader fragment="GameData/shader/lightingShader.frag" vertex="GameData/shader/lightingShader.vert">
+    <shader fragment="GameData/shader/phong.frag" vertex="GameData/shader/phong.vert">
       <sampler file="GameData/meshs/Frigate/colormap.tga" uniform="colormap" />
       <sampler file="GameData/meshs/Frigate/specularmap.tga" uniform="specularmap" />
       <sampler file="GameData/meshs/Frigate/illumination.tga" uniform="illumination" />

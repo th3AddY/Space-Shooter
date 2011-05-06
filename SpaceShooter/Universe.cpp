@@ -187,6 +187,7 @@ int Universe::build()
 			Geode* skybox = createSkyboxGeode(m_skyboxDirectory);
 
 			m_skyboxTransform->addChild(skybox);
+			m_skyboxTransform->setScale(Vec3(10, 10, 10));
 			m_sceneGroup->addChild(m_skyboxTransform);
 		}
 

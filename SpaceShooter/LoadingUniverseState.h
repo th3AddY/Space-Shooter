@@ -8,6 +8,13 @@
 #include "ObstacleBuilder.h"
 
 #include <osg/ShapeDrawable>
+#include <osgParticle/ParticleSystem>
+#include <osgParticle/ParticleSystemUpdater>
+#include <osgParticle/ModularEmitter>
+#include <osgParticle/MultiSegmentPlacer>
+#include <osgParticle/ModularProgram>
+#include <osgParticle/AccelOperator>
+#include <osgParticle/SinkOperator>
 
 namespace Shooter
 {
@@ -21,5 +28,7 @@ namespace Shooter
 
 	private:
 		char* m_levelFile;
+
+		void createTestParticleSystem(Group* root);
 	};
 }
