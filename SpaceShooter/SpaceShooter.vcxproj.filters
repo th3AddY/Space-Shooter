@@ -119,6 +119,9 @@
     <ClCompile Include="Obstacle.cpp">
       <Filter>Nodes</Filter>
     </ClCompile>
+    <ClCompile Include="ShaderCache.cpp">
+      <Filter>Cache</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SpaceViewer.h">
@@ -194,6 +197,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Obstacle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderCache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -55,7 +55,6 @@ void LoadingUniverseState::loadingProcess()
 	spacestation->setPosition(Vec3(-100, 0, -100));
 	m_universe->getSceneGroup()->addChild(spacestation);
 
-
 	frigate->setPosition(Vec3(0, -200, 0));
 
 	corsair->setPosition(Vec3(0, 200, 0));

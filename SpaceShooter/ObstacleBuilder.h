@@ -21,10 +21,10 @@ namespace Shooter
 	class ObstacleBuilder : public Cache<ObstacleBuilder>
 	{
 	public:
-		Obstacle* build(char* filename, double* simTimeDiff);
+		Obstacle* build(const char* filename, double* simTimeDiff);
 	protected:
-		CacheContainer* load(char* filename);
-		Node* getNode(CacheContainer* container);
+		CacheContainer* load(const char* filename);
+		Referenced* getReferenced(CacheContainer* container);
 
 	private:
 		Node* parseXML(DOMDocument* doc);

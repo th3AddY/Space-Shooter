@@ -2,13 +2,11 @@
 
 using namespace Shooter;
 
-SpaceCraft* SpaceCraftBuilder::build(char* filename, double* simTimeDiff)
+SpaceCraft* SpaceCraftBuilder::build(const char* filename, double* simTimeDiff)
 {
-	Node* node = fromFile(filename);
-
 	try
 	{
-		SpaceCraft* spaceCraft = static_cast<SpaceCraft*>(node);
+		SpaceCraft* spaceCraft = static_cast<SpaceCraft*>(fromFile(filename));
 		spaceCraft->setSimTimePointer(simTimeDiff);
 
 		return spaceCraft;
@@ -19,7 +17,7 @@ SpaceCraft* SpaceCraftBuilder::build(char* filename, double* simTimeDiff)
 	}
 }
 
-CacheContainer* SpaceCraftBuilder::load(char* filename)
+CacheContainer* SpaceCraftBuilder::load(const char* filename)
 {
 	XercesDOMParser* parser    = new XercesDOMParser();
 	ErrorHandler* errorHandler = new HandlerBase();
@@ -58,14 +56,14 @@ CacheContainer* SpaceCraftBuilder::load(char* filename)
 	return container;
 }
 
-Node* SpaceCraftBuilder::getNode(CacheContainer* container)
+Referenced* SpaceCraftBuilder::getReferenced(CacheContainer* container)
 {
 	try
 	{
 		SpaceCraftContainer* scontainer = static_cast<SpaceCraftContainer*>(container);
 
 		SpaceCraft* spaceCraft = new SpaceCraft(scontainer->params);
-		spaceCraft->addChild(scontainer->node);
+		spaceCraft->addChild(static_cast<Node*>(scontainer->referenced.get()));
 
 		return spaceCraft;
 	}
@@ -90,7 +88,7 @@ SpaceCraftContainer* SpaceCraftBuilder::parseXML(DOMDocument* doc)
 		for (unsigned int k=0; k<categoryAttributes->getLength(); k++)
 			if (getLower(XMLString::transcode(categoryAttributes->item(k)->getNodeName())) == "file")
 			{
-				container->node = ModelCache::get().fromFile(XMLString::transcode(categoryAttributes->item(k)->getNodeValue()));
+				container->referenced = ModelCache::get().loadModel(XMLString::transcode(categoryAttributes->item(k)->getNodeValue()));
 				// container->modelFilename = XMLString::transcode(categoryAttributes->item(k)->getNodeValue());
 				break;
 			}

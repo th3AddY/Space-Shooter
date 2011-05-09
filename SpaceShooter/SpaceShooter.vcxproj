@@ -39,8 +39,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\SDK\xerces-c-3.1.1\src;C:\SDK\boost_1_46_1;C:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\SDK\xerces-c-3.1.1\Build\Win32\VC10\Debug;C:\SDK\OpenSceneGraph-2.9.11\lib;C:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\SDK\xerces-c-3.1.1\src;E:\SDK\boost_1_46_1;E:\SDK\OpenSceneGraph-2.9.11\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\SDK\xerces-c-3.1.1\Build\Win32\VC10\Debug;E:\SDK\OpenSceneGraph-2.9.11\lib;E:\SDK\boost_1_46_1\stage\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -94,6 +94,7 @@
     <ClCompile Include="Obstacle.cpp" />
     <ClCompile Include="ObstacleBuilder.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="ShaderCache.cpp" />
     <ClCompile Include="SpaceConstruct.cpp" />
     <ClCompile Include="SpaceConstructCallback.cpp" />
     <ClCompile Include="SpaceCraft.cpp" />
@@ -121,6 +122,7 @@
     <ClInclude Include="Obstacle.h" />
     <ClInclude Include="ObstacleBuilder.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="ShaderCache.h" />
     <ClInclude Include="SpaceConstruct.h" />
     <ClInclude Include="SpaceConstructCallback.h" />
     <ClInclude Include="SpaceCraft.h" />

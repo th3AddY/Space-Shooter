@@ -23,11 +23,11 @@ namespace Shooter
 	class SpaceCraftBuilder : public Cache<SpaceCraftBuilder>
 	{
 	public:
-		SpaceCraft* build(char* filename, double* simTimeDiff);
+		SpaceCraft* build(const char* filename, double* simTimeDiff);
 
 	protected:
-		CacheContainer* load(char* filename);
-		Node* getNode(CacheContainer* container);
+		CacheContainer* load(const char* filename);
+		Referenced* getReferenced(CacheContainer* container);
 
 	private:
 		SpaceCraftContainer* parseXML(DOMDocument* doc);

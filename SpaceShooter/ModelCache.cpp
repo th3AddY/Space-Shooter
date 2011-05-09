@@ -2,7 +2,12 @@
 
 using namespace Shooter;
 
-CacheContainer* ModelCache::load(char* filename)
+Node* ModelCache::loadModel(const char* filename)
+{
+	return static_cast<Node*>(fromFile(filename));
+}
+
+CacheContainer* ModelCache::load(const char* filename)
 {
 	XercesDOMParser* parser    = new XercesDOMParser();
 	ErrorHandler* errorHandler = new HandlerBase();
@@ -34,7 +39,7 @@ CacheContainer* ModelCache::load(char* filename)
 	}
 
 	CacheContainer* container = new CacheContainer();
-	container->node = parseXML(parser->getDocument());
+	container->referenced = parseXML(parser->getDocument());
 
 	delete errorHandler;
 	delete parser;
@@ -62,7 +67,7 @@ Node* ModelCache::parseXML(DOMDocument* doc)
 		for (unsigned int j=0; j<meshAttributes->getLength(); j++)
 			if (getLower(XMLString::transcode(meshAttributes->item(j)->getNodeName())) == "file")
 			{
-				transform->addChild(MeshCache::get().fromFile(XMLString::transcode(meshAttributes->item(j)->getNodeValue())));
+				transform->addChild(MeshCache::get().loadMesh(XMLString::transcode(meshAttributes->item(j)->getNodeValue())));
 				break;
 			}
 
@@ -92,51 +97,73 @@ Node* ModelCache::parseXML(DOMDocument* doc)
 
 void ModelCache::parseShader(DOMNode* domnode, Node* node)
 {
-	Program* program = new Program();
+	// Program* program = new Program();
 
 	DOMElement* shaderElement = static_cast<DOMElement*>(domnode);
 
 	DOMNamedNodeMap* shaderAttributes = shaderElement->getAttributes();
 
+	string fragmentShader = "/";
+	string vertexShader = "/";
+	string geometryShader = "/";
+	string tesscontrolShader = "/";
+	string tessevaluationShader = "/";
+	vector<string> undefinedShader;
+
 	for (unsigned int i=0; i<shaderAttributes->getLength(); i++)
 	{
 		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "fragment")
 		{
-			loadShaderSource(program, Shader::FRAGMENT, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+			fragmentShader = XMLString::transcode(shaderAttributes->item(i)->getNodeValue());
+			// loadShaderSource(program, Shader::FRAGMENT, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
 			continue;
 		}
 
 		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "vertex")
 		{
-			loadShaderSource(program, Shader::VERTEX, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+			vertexShader = XMLString::transcode(shaderAttributes->item(i)->getNodeValue());
+			// loadShaderSource(program, Shader::VERTEX, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
 			continue;
 		}
 
 		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "geometry")
 		{
-			loadShaderSource(program, Shader::GEOMETRY, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+			geometryShader = XMLString::transcode(shaderAttributes->item(i)->getNodeValue());
+			// loadShaderSource(program, Shader::GEOMETRY, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
 			continue;
 		}
 
 		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "tesscontrol")
 		{
-			loadShaderSource(program, Shader::TESSCONTROL, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+			tesscontrolShader = XMLString::transcode(shaderAttributes->item(i)->getNodeValue());
+			// loadShaderSource(program, Shader::TESSCONTROL, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
 			continue;
 		}
 
 		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "tessevaluation")
 		{
-			loadShaderSource(program, Shader::TESSEVALUATION, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+			tessevaluationShader = XMLString::transcode(shaderAttributes->item(i)->getNodeValue());
+			// loadShaderSource(program, Shader::TESSEVALUATION, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
 			continue;
 		}
 
 		if (getLower(XMLString::transcode(shaderAttributes->item(i)->getNodeName())) == "undefined")
 		{
-			loadShaderSource(program, Shader::UNDEFINED, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+			undefinedShader.push_back(XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
+			// loadShaderSource(program, Shader::UNDEFINED, XMLString::transcode(shaderAttributes->item(i)->getNodeValue()));
 			continue;
 		}
-
 	}
+
+	string shaderSource = fragmentShader + "," + vertexShader + "," + geometryShader + "," + tesscontrolShader + "," + tessevaluationShader;
+	for (unsigned int i=0; i<undefinedShader.size(); i++)
+		shaderSource += "," + undefinedShader[i];
+
+
+	char* shaderSourceChar = new char[strlen(shaderSource.c_str()) + 1]; 
+	sprintf(shaderSourceChar, "%s", shaderSource);
+
+	Program* program = ShaderCache::get().loadProgram(shaderSourceChar);
 
 	int texLayer = 1;
 	DOMNodeList* samplerNodes = shaderElement->getElementsByTagName(XMLString::transcode("sampler"));
@@ -237,12 +264,12 @@ void ModelCache::parseMaterial(DOMNode* domnode, Node* node)
 	node->getOrCreateStateSet()->setAttribute(material, StateAttribute::ON);
 }
 
-void ModelCache::loadShaderSource(Program* program, Shader::Type type, char* source)
+/* void ModelCache::loadShaderSource(Program* program, Shader::Type type, char* source)
 {
 	Shader* shader = new Shader(type);
 	shader->loadShaderSourceFromFile(source);
 	program->addShader(shader);
-}
+} */
 
 void ModelCache::loadShaderSampler(Node* node, char* file, char* uniform, int texLayer)
 {

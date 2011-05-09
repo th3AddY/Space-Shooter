@@ -2,13 +2,11 @@
 
 using namespace Shooter;
 
-Obstacle* ObstacleBuilder::build(char* filename, double* simTimeDiff)
+Obstacle* ObstacleBuilder::build(const char* filename, double* simTimeDiff)
 {
-	Node* node = fromFile(filename);
-
 	try
 	{
-		Obstacle* obstacle = static_cast<Obstacle*>(node);
+		Obstacle* obstacle = static_cast<Obstacle*>(fromFile(filename));
 		obstacle->setSimTimePointer(simTimeDiff);
 
 		return obstacle;
@@ -19,12 +17,12 @@ Obstacle* ObstacleBuilder::build(char* filename, double* simTimeDiff)
 	}
 }
 
-Node* ObstacleBuilder::getNode(CacheContainer* container)
+Referenced* ObstacleBuilder::getReferenced(CacheContainer* container)
 {
 	try
 	{
 		Obstacle* obstacle = new Obstacle();
-		obstacle->addChild(container->node);
+		obstacle->addChild(static_cast<Node*>(container->referenced.get()));
 
 		return obstacle;
 	}
@@ -34,7 +32,7 @@ Node* ObstacleBuilder::getNode(CacheContainer* container)
 	}
 }
 
-CacheContainer* ObstacleBuilder::load(char* filename)
+CacheContainer* ObstacleBuilder::load(const char* filename)
 {
 	XercesDOMParser* parser    = new XercesDOMParser();
 	ErrorHandler* errorHandler = new HandlerBase();
@@ -66,7 +64,7 @@ CacheContainer* ObstacleBuilder::load(char* filename)
 	}
 
 	CacheContainer* container = new CacheContainer();
-	container->node = parseXML(parser->getDocument());
+	container->referenced = parseXML(parser->getDocument());
 
 	delete errorHandler;
 	delete parser;
@@ -93,7 +91,7 @@ Node* ObstacleBuilder::parseXML(DOMDocument* doc)
 		for (unsigned int j=0; j<modelAttributes->getLength(); j++)
 			if (getLower(XMLString::transcode(modelAttributes->item(j)->getNodeName())) == "file")
 			{
-				transform->addChild(ModelCache::get().fromFile(XMLString::transcode(modelAttributes->item(j)->getNodeValue())));
+				transform->addChild(ModelCache::get().loadModel(XMLString::transcode(modelAttributes->item(j)->getNodeValue())));
 				break;
 			}
 

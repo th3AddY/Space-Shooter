@@ -254,7 +254,7 @@ Quat Shooter::getQuatFromEuler(double heading, double attitude, double bank)
 	return q;
 }
 
-string Shooter::getLower(char* text)
+string Shooter::getLower(const char* text)
 {
 	string result(text);
 	transform(result.begin(), result.end(), result.begin(), tolower);

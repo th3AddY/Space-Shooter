@@ -4,5 +4,5 @@ using namespace Shooter;
 
 void CacheContainer::release()
 {
-	node.release();
+	referenced.release();
 }

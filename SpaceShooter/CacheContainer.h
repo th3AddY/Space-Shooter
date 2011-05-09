@@ -9,8 +9,8 @@ namespace Shooter
 	class CacheContainer
 	{
 	public:
-		char* filename;
-		ref_ptr<Node> node;
+		const char* filename;
+		ref_ptr<Referenced> referenced;
 
 		virtual void release();
 	};

@@ -40,7 +40,7 @@ namespace Shooter
 	void transformVector(Vec3* vec, Matrixd* mat);
 	Quat getQuatFromEuler(double heading, double attitude, double bank);
 
-	string getLower(char* text);
+	string getLower(const char* text);
 	
 	void generateTangentAndBinormal(Node* node);
 

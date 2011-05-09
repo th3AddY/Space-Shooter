@@ -2,10 +2,15 @@
 
 using namespace Shooter;
 
-CacheContainer* MeshCache::load(char* filename)
+Node* MeshCache::loadMesh(const char* filename)
+{
+	return static_cast<Node*>(fromFile(filename));
+}
+
+CacheContainer* MeshCache::load(const char* filename)
 {
 	CacheContainer* container = new CacheContainer();
-	container->node = readNodeFile(filename);
+	container->referenced = readNodeFile(filename);
 
 	return container;
 }
