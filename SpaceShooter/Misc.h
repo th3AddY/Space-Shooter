@@ -21,6 +21,15 @@ using namespace xercesc;
 
 namespace Shooter
 {
+	const unsigned int MOUSE_LEFT = 1;
+	const unsigned int MOUSE_MIDDLE = 2;
+	const unsigned int MOUSE_RIGHT = 4;
+
+	const unsigned int KEY_A = 97;
+	const unsigned int KEY_D = 100;
+	const unsigned int KEY_S = 115;
+	const unsigned int KEY_W = 119;
+
 	typedef struct _inputStateStamp
 	{
 		bool keydown[256];
@@ -33,7 +42,7 @@ namespace Shooter
 		int mouseYspeed;
 	} InputStateStamp;
 
-	void checkKeys(bool* keys);
+	void checkKeysAndMouse(bool* keys, bool* mouse);
 
 	Geode* createSkyboxGeode(char* dir);
 

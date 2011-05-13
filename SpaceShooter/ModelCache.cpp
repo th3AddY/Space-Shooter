@@ -97,8 +97,6 @@ Node* ModelCache::parseXML(DOMDocument* doc)
 
 void ModelCache::parseShader(DOMNode* domnode, Node* node)
 {
-	// Program* program = new Program();
-
 	DOMElement* shaderElement = static_cast<DOMElement*>(domnode);
 
 	DOMNamedNodeMap* shaderAttributes = shaderElement->getAttributes();
@@ -161,7 +159,7 @@ void ModelCache::parseShader(DOMNode* domnode, Node* node)
 
 
 	char* shaderSourceChar = new char[strlen(shaderSource.c_str()) + 1]; 
-	sprintf(shaderSourceChar, "%s", shaderSource);
+	sprintf(shaderSourceChar, "%s", shaderSource.c_str());
 
 	Program* program = ShaderCache::get().loadProgram(shaderSourceChar);
 
@@ -263,13 +261,6 @@ void ModelCache::parseMaterial(DOMNode* domnode, Node* node)
 
 	node->getOrCreateStateSet()->setAttribute(material, StateAttribute::ON);
 }
-
-/* void ModelCache::loadShaderSource(Program* program, Shader::Type type, char* source)
-{
-	Shader* shader = new Shader(type);
-	shader->loadShaderSourceFromFile(source);
-	program->addShader(shader);
-} */
 
 void ModelCache::loadShaderSampler(Node* node, char* file, char* uniform, int texLayer)
 {

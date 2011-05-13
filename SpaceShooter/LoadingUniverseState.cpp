@@ -125,8 +125,8 @@ void LoadingUniverseState::createTestParticleSystem(Group* root)
  // Create a partical to be used by our particle system and define a few
  // of its properties
  osgParticle::Particle smokeParticle; 
- smokeParticle.setSizeRange(osgParticle::rangef(0.1,20.0)); // meters
- smokeParticle.setLifeTime(4); // seconds
+ smokeParticle.setSizeRange(osgParticle::rangef(10.0,20.0)); // meters
+ smokeParticle.setLifeTime(0.2); // seconds
  smokeParticle.setMass(0.0); // in kilograms
  // Make this our particle system's default particle 
  dustParticleSystem->setDefaultParticleTemplate(smokeParticle);
@@ -140,24 +140,22 @@ void LoadingUniverseState::createTestParticleSystem(Group* root)
  // that will be added each frame
  osgParticle::RandomRateCounter *dustRate = 
     static_cast<osgParticle::RandomRateCounter *>(emitter->getCounter());
- dustRate->setRateRange(5, 10); // generate 5 to 10 particles per second
+ dustRate->setRateRange(10, 20); // generate 5 to 10 particles per second
 
  // To customize the placer, create and initialize a multi-segment placer 
- osgParticle::MultiSegmentPlacer* lineSegment = new osgParticle::MultiSegmentPlacer();
+ osgParticle::PointPlacer* lineSegment = new osgParticle::PointPlacer();
  // Add vertices to our placer. This defines line seqments along which our particles will
  // originate. (If we co-locate a tank and this emitter, this will result in dust particles
  // originating from a line extending below and behind the tank model.) 
- lineSegment->addVertex(0,0,-2);
- lineSegment->addVertex(0,-2,-2);
- lineSegment->addVertex(0,-16,0);
  // Use this placer for our emitter 
  emitter->setPlacer(lineSegment);
+
 
  // To customize the shooter, create and initialize a radial shooter 
  osgParticle::RadialShooter* smokeShooter = new osgParticle::RadialShooter();
  // Set properties of this shooter 
- smokeShooter->setThetaRange(0.0, 3.14159/4); // radians, relative to Z axis.
- smokeShooter->setInitialSpeedRange(50,100); // meters/second
+ smokeShooter->setThetaRange(0.0, 0.1); // radians, relative to Z axis.
+ smokeShooter->setInitialSpeedRange(100,200); // meters/second
  // Use this shooter for our emitter
  emitter->setShooter(smokeShooter);
 
@@ -169,7 +167,7 @@ void LoadingUniverseState::createTestParticleSystem(Group* root)
 
     // Create an operator that simulates gravity, adjust it and add it to our program
     osgParticle::AccelOperator *accelUp = new osgParticle::AccelOperator;
-    accelUp->setToGravity(-0.5); // scale factor for normal acceleration due to gravity. 
+    accelUp->setToGravity(0.5); // scale factor for normal acceleration due to gravity. 
     moveDustInAir->addOperator(accelUp);
 
     // Add an operator to our program to calculate the friction of air.

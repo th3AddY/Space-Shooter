@@ -40,18 +40,24 @@ void SpaceCraft::update()
 
 void SpaceCraft::accelerate()
 {
-	m_speed += m_params.forwardAcceleration * float(*m_simTimeDiff);
-	if (m_speed > m_params.maxSpeed)
-		m_speed = m_params.maxSpeed;
+	if (!m_accelerated)
+	{
+		m_speed += m_params.forwardAcceleration * float(*m_simTimeDiff);
+		if (m_speed > m_params.maxSpeed)
+			m_speed = m_params.maxSpeed;
+	}
 
 	m_accelerated = true;
 }
 
 void SpaceCraft::retard()
 {
-	m_speed -= m_params.backwardAcceleration * float(*m_simTimeDiff);
-	if (m_speed < m_params.minSpeed)
-		m_speed = m_params.minSpeed;
+	if (!m_accelerated)
+	{
+		m_speed -= m_params.backwardAcceleration * float(*m_simTimeDiff);
+		if (m_speed < m_params.minSpeed)
+			m_speed = m_params.minSpeed;
+	}
 
 	m_accelerated = true;
 }

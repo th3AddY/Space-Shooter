@@ -2,10 +2,14 @@
 
 using namespace Shooter;
 
-void Shooter::checkKeys(bool* keys)
+void Shooter::checkKeysAndMouse(bool* keys, bool* mouse)
 {
 	for (int i=0; i<256; i++)
 		if (keys[i])
+			break;
+
+	for (int i=0; i<8; i++)
+		if (mouse[i])
 			break;
 }
 
